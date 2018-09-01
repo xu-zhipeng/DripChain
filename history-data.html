@@ -1,0 +1,632 @@
+<!doctype html>
+<html class="no-js fixed-layout">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>水滴链 | 数据分析</title>
+  <meta name="description" content="数据分析">
+  <meta name="keywords" content="index">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="assets/css/amazeui.min.css" />
+  <link rel="stylesheet" href="assets/css/admin.css">
+    <script src="assets/js/echarts.js"></script>
+  <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <script type="text/javascript">
+
+    $(function () {
+      $("#admin-offcanvas").show();
+      $(".am-icon-list.am-margin-left").click(function () {
+        if ($("#admin-offcanvas").is(":visible")) {
+          $("#admin-offcanvas").hide();
+        } else {
+          $("#admin-offcanvas").show();
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+  <header class="am-topbar am-topbar-inverse admin-header">
+    <div class="am-topbar-brand">
+      <strong>水滴链</strong>
+      <small>欢迎您访问！</small>
+      <div class="am-icon-list am-margin-left">
+  
+      </div>
+    </div>
+  
+  
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}">
+      <span class="am-sr-only">导航切换</span>
+      <span class="am-icon-bars"></span>
+    </button>
+  
+    <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+  
+      <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+        <li>
+          <a href="javascript:;">
+            <span class="am-icon-envelope-o"></span> 留言反馈
+            <!-- <span class="am-badge am-badge-warning">5</span> -->
+          </a>
+        </li>
+        <li class="am-dropdown" data-am-dropdown>
+          <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+            <span class="am-icon-users"></span> 个人
+            <span class="am-icon-caret-down"></span>
+          </a>
+          <ul class="am-dropdown-content">
+            <li>
+              <a href="#">
+                <span class="am-icon-user"></span> 资料</a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="am-icon-cog"></span> 设置</a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="am-icon-power-off"></span> 退出</a>
+            </li>
+          </ul>
+        </li>
+        <li class="am-hide-sm-only">
+          <a href="javascript:;" id="admin-fullscreen">
+            <span class="am-icon-arrows-alt"></span>
+            <span class="admin-fullText">开启全屏</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>
+  
+  <div class="am-cf admin-main">
+    <!-- sidebar start -->
+    <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+      <div class="am-offcanvas-bar admin-offcanvas-bar">
+        <ul id="xiala" class="am-list admin-sidebar-list">
+          <li>
+            <a href="index.html">
+              <span class="am-icon-home"></span> 首页</a>
+          </li>
+  
+          <li class="admin-parent">
+            <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
+              <span class="am-icon-dashboard"></span> 监控中心
+              <span class="am-icon-angle-right am-fr am-margin-right"></span>
+            </a>
+            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+              <li>
+                <a href="Ent-map-display.html" class="am-cf">
+                  <span class="am-icon-map-marker"></span> 地图展示
+                  <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                </a>
+              </li>
+              <li>
+                <a href="Ent-list-display.html">
+                  <span class="am-icon-list"></span> 列表展示</a>
+              </li>
+            </ul>
+          </li>
+          <li class="admin-parent">
+            <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
+              <span class="am-icon-dot-circle-o"></span> 数据分析
+              <span class="am-icon-angle-right am-fr am-margin-right"></span>
+            </a>
+            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+              <li>
+                <a href="current-data.html" class="am-cf">
+                  <span class="am-icon-area-chart"></span> 实时数据
+                  <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                </a>
+              </li>
+              <li>
+                <a href="data-forecast.html">
+                  <span class="am-icon-line-chart"></span> 数据预测</a>
+              </li>
+              <li>
+                <a href="visual-data.html">
+                  <span class="am-icon-pie-chart"></span> 数据可视化</a>
+              </li>
+              <li>
+                <a href="history-data.html">
+                  <span class="am-icon-clock-o"></span> 历史记录
+                  <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="admin-parent">
+            <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
+              <span class="am-icon-building"></span> 企业管理
+              <span class="am-icon-angle-right am-fr am-margin-right"></span>
+            </a>
+            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+              <li>
+                <a href="enterprise-update.html" class="am-cf">
+                  <span class="am-icon-wrench"></span> 企业更新
+                  <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                </a>
+              </li>
+              <li>
+                <a href="enterprise-check.html">
+                  <span class="am-icon-check"></span> 企业审核</a>
+              </li>
+              <li>
+                <a href="enterprise-list.html">
+                  <span class="am-icon-list"></span> 企业列表</a>
+              </li>
+            </ul>
+          </li>
+          <li class="admin-parent">
+            <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
+              <span class="am-icon-bullhorn"></span> 政策公告
+              <span class="am-icon-angle-right am-fr am-margin-right"></span>
+            </a>
+            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+              <li>
+                <a href="notice-list.html" class="am-cf">
+                  <span class="am-icon-list"></span> 公告列表
+                  <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                </a>
+              </li>
+              <li>
+                <a href="add-notice.html">
+                  <span class="am-icon-plus"></span> 添加公告</a>
+              </li>
+              <li>
+                <a href="del-notice.html">
+                  <span class="am-icon-th"></span> 删除公告
+                  <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+                </a>
+              </li>
+              <li>
+                <a href="update-notice.html">
+                  <span class="am-icon-refresh"></span> 更新公告</a>
+              </li>
+            </ul>
+          </li>
+          <li class="admin-parent">
+            <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
+              <span class="am-icon-bell"></span> 超标提醒
+              <span class="am-icon-angle-right am-fr am-margin-right"></span>
+            </a>
+            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+              <li>
+                <a href="gov-overList.html" class="am-cf">
+                  <span class="am-icon-list"></span> 超标列表
+                  <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                </a>
+              </li>
+              <li>
+                <a href="gov-newTickets.html">
+                  <span class="am-icon-plus"></span> 新增罚单</a>
+              </li>
+              <li>
+                <a href="gov-ticketsList.html">
+                  <span class="am-icon-calendar"></span> 罚单记录</a>
+              </li>
+            </ul>
+          </li>
+          <li class="admin-parent">
+            <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
+              <span class="am-icon-television"></span> 设备管理
+              <span class="am-icon-angle-right am-fr am-margin-right"></span>
+            </a>
+            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+              <li>
+                <a href="equipment-list.html" class="am-cf">
+                  <span class="am-icon-list"></span> 设备列表
+                  <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                </a>
+              </li>
+              <li>
+                <a href="add-equipment.html">
+                  <span class="am-icon-plus"></span> 添加设备</a>
+              </li>
+              <li>
+                <a href="equipment-grouping.html">
+                  <span class="am-icon-th"></span> 设备分组
+                  <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+                </a>
+              </li>
+              <li>
+                <a href="equipment-status.html">
+                  <span class="am-icon-refresh"></span> 设备状态</a>
+              </li>
+            </ul>
+          </li>
+          <li class="admin-parent">
+            <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
+              <span class="am-icon-bell"></span> 超标预警
+              <span class="am-icon-angle-right am-fr am-margin-right"></span>
+            </a>
+            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+              <li>
+                <a href="ent-alarmlist.html" class="am-cf">
+                  <span class="am-icon-list"></span> 警报列表
+                  <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                </a>
+              </li>
+              <li>
+                <a href="ent-addalarm.html">
+                  <span class="am-icon-plus"></span> 添加警报</a>
+              </li>
+              <li>
+                <a href="ent-alarmcontacts.html">
+                  <span class="am-icon-group"></span> 报警联系人/组
+                  <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+                </a>
+              </li>
+              <li>
+                <a href="ent-alarmrecord.html">
+                  <span class="am-icon-calendar"></span> 报警记录</a>
+              </li>
+            </ul>
+          </li>
+          <li class="admin-parent">
+            <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
+              <span class="am-icon-user"></span> 用户中心
+              <span class="am-icon-angle-right am-fr am-margin-right"></span>
+            </a>
+            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+              <li>
+                <a href="add-user.html" class="am-cf">
+                  <span class="am-icon-user-plus"></span> 添加用户
+                  <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                </a>
+              </li>
+              <li>
+                <a href="user-rights.html">
+                  <span class="am-icon-wrench"></span> 用户权限</a>
+              </li>
+              <li>
+                <a href="user-password.html">
+                  <span class="am-icon-key"></span> 用户密码
+                  <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+                </a>
+              </li>
+              <li>
+                <a href="equipment-lock.html">
+                  <span class="am-icon-lock"></span> 设备加密</a>
+              </li>
+              <li>
+                <a href="communication-password.html">
+                  <span class="am-icon-key"></span> 通讯密码</a>
+              </li>
+              <li>
+                <a href="user-info.html">
+                  <span class="am-icon-user"></span> 个人信息</a>
+              </li>
+              <li>
+                <a href="wechat-bind.html">
+                  <span class="am-icon-wechat"></span> 微信绑定管理</a>
+              </li>
+            </ul>
+          </li>
+          <li class="admin-parent">
+            <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
+              <span class="am-icon-ellipsis-h"></span> 其他
+              <span class="am-icon-angle-right am-fr am-margin-right"></span>
+            </a>
+            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+              <li>
+                <a href="Ent-suggestion.html">
+                  <span class="am-icon-envelope"></span> 留言反馈
+                  <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                </a>
+              </li>
+              <li>
+                <a href="data-export.html">
+                  <span class="am-icon-table"></span> 数据导出
+                  <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+                </a>
+              </li>
+              <li>
+                <a href="web-printing.html">
+                  <span class="am-icon-print"></span> Web打印</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="mobile-phone.html">
+              <span class="am-icon-mobile-phone am-icon-sm"></span> 手机端</a>
+          </li>
+          <li>
+            <a href="logout.html">
+              <span class="am-icon-sign-out"></span> 注销</a>
+          </li>
+        </ul>
+  
+        <div class="am-panel am-panel-default admin-sidebar-panel">
+          <div class="am-panel-bd">
+            <p>
+              <span class="am-icon-bookmark"></span> 公告</p>
+            <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
+          </div>
+        </div>
+  
+        <div class="am-panel am-panel-default admin-sidebar-panel">
+          <div class="am-panel-bd">
+            <p>
+              <span class="am-icon-tag"></span> wiki</p>
+            <p>Welcome to the Amaze UI wiki!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- sidebar end -->
+
+    <!-- content start -->
+    <div class="admin-content">
+      <div class="admin-content-body">
+        <div class="am-cf am-padding">
+          <div class="am-fl am-cf">
+            <strong class="am-text-primary am-text-lg">数据分析</strong> /
+            <small>数据可视化</small>
+          </div>
+        </div>
+
+          <form class="am-form">
+              <fieldset>
+                  <legend>历史数据条件选择</legend>
+
+                    <div class="am-alert am-alert-danger" id="my-alert" style="display: none">
+                        <p>开始日期应小于结束日期！</p>
+                    </div>
+                    <div class="am-g">
+                        <div class="am-u-sm-6" id="doc-btn-1">
+                            <label for="doc-btn-1">查询日期</label>
+                            <div>
+                            <div class="am-u-sm-6">
+                                <button type="button" class="am-btn am-btn-default am-margin-right" id="my-start">开始日期</button><span id="my-startDate">2018-01-01</span>
+                            </div>
+                            <div class="am-u-sm-6">
+                                <button type="button" class="am-btn am-btn-default am-margin-right" id="my-end">结束日期</button><span id="my-endDate">2018-01-31</span>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="am-u-sm-2 ">
+                            <label for="doc-checkbox-2">超标与否</label>
+                            <div id="doc-checkbox-2" class="am-checkbox">
+                            <label>
+                                <input type="checkbox"> 只看超标数据
+                            </label>
+                            </div>
+                        </div>
+                        <div class="am-u-sm-3">
+                            <label for="doc-checkbox-1">查看设备</label>
+                            <div class="am-form-group" id="doc-checkbox-1">
+                                <label class="am-checkbox-inline">
+                                    <input type="checkbox" value="option1"> PH值
+                                </label>
+                                <label class="am-checkbox-inline">
+                                    <input type="checkbox" value="option2"> 水流量
+                                </label>
+                                <label class="am-checkbox-inline">
+                                    <input type="checkbox" value="option3"> 氮磷含量
+                                </label>
+                            </div>
+                        </div>
+                        <div class="am-u-sm-1">
+                            <p></p>
+                            <p><button type="submit" class="am-btn am-btn-default">提交</button></p>
+                        </div>
+                    </div>
+
+
+
+
+
+              </fieldset>
+          </form>
+            <script>
+                $(function() {
+                    var startDate = new Date(2018, 01, 01);
+                    var endDate = new Date(2018, 01, 31);
+                    var $alert = $('#my-alert');
+                    $('#my-start').datepicker().
+                    on('changeDate.datepicker.amui', function(event) {
+                        if (event.date.valueOf() > endDate.valueOf()) {
+                            $alert.find('p').text('开始日期应小于结束日期！').end().show();
+                        } else {
+                            $alert.hide();
+                            startDate = new Date(event.date);
+                            $('#my-startDate').text($('#my-start').data('date'));
+                        }
+                        $(this).datepicker('close');
+                    });
+
+                    $('#my-end').datepicker().
+                    on('changeDate.datepicker.amui', function(event) {
+                        if (event.date.valueOf() < startDate.valueOf()) {
+                            $alert.find('p').text('结束日期应大于开始日期！').end().show();
+                        } else {
+                            $alert.hide();
+                            endDate = new Date(event.date);
+                            $('#my-endDate').text($('#my-end').data('date'));
+                        }
+                        $(this).datepicker('close');
+                    });
+                });
+            </script>
+
+
+            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+            <div id="container" style="width: 100%;height: 600px;"></div>
+            <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+            <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+            <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+            <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+            <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+            <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+            <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+            <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+            <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+            <script type="text/javascript">
+                var dom = document.getElementById("container");
+                var myChart = echarts.init(dom);
+                var app = {};
+                option = null;
+
+                var yearCount = 7;
+                var categoryCount = 30;
+
+                var xAxisData = [];
+                var customData = [];
+                var legendData = [];
+                var dataList = [];
+
+                legendData.push('trend');
+                var encodeY = [];
+                for (var i = 0; i < yearCount; i++) {
+                    legendData.push((2010 + i) + '');
+                    dataList.push([]);
+                    encodeY.push(1 + i);
+                }
+
+                for (var i = 0; i < categoryCount; i++) {
+                    var val = Math.random() * 1000;
+                    xAxisData.push('category' + i);
+                    var customVal = [i];
+                    customData.push(customVal);
+
+                    var data = dataList[0];
+                    for (var j = 0; j < dataList.length; j++) {
+                        var value = j === 0
+                            ? echarts.number.round(val, 2)
+                            : echarts.number.round(Math.max(0, dataList[j - 1][i] + (Math.random() - 0.5) * 200), 2);
+                        dataList[j].push(value);
+                        customVal.push(value);
+                    }
+                }
+
+                function renderItem(params, api) {
+                    var xValue = api.value(0);
+                    var currentSeriesIndices = api.currentSeriesIndices();
+                    var barLayout = api.barLayout({
+                        barGap: '30%', barCategoryGap: '20%', count: currentSeriesIndices.length - 1
+                    });
+
+                    var points = [];
+                    for (var i = 0; i < currentSeriesIndices.length; i++) {
+                        var seriesIndex = currentSeriesIndices[i];
+                        if (seriesIndex !== params.seriesIndex) {
+                            var point = api.coord([xValue, api.value(seriesIndex)]);
+                            point[0] += barLayout[i - 1].offsetCenter;
+                            point[1] -= 20;
+                            points.push(point);
+                        }
+                    }
+                    var style = api.style({
+                        stroke: api.visual('color'),
+                        fill: null
+                    });
+
+                    return {
+                        type: 'polyline',
+                        shape: {
+                            points: points
+                        },
+                        style: style
+                    };
+                }
+
+                option = {
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: legendData
+                    },
+                    dataZoom: [{
+                        type: 'slider',
+                        start: 50,
+                        end: 70
+                    }, {
+                        type: 'inside',
+                        start: 50,
+                        end: 70
+                    }],
+                    xAxis: {
+                        data: xAxisData
+                    },
+                    yAxis: {},
+                    series: [{
+                        type: 'custom',
+                        name: 'trend',
+                        renderItem: renderItem,
+                        itemStyle: {
+                            normal: {
+                                borderWidth: 2
+                            }
+                        },
+                        encode: {
+                            x: 0,
+                            y: encodeY
+                        },
+                        data: customData,
+                        z: 100
+                    }].concat(echarts.util.map(dataList, function (data, index) {
+                        return {
+                            type: 'bar',
+                            animation: false,
+                            name: legendData[index + 1],
+                            itemStyle: {
+                                normal: {
+                                    opacity: 0.5
+                                }
+                            },
+                            data: data
+                        };
+                    }))
+                };;
+                if (option && typeof option === "object") {
+                    myChart.setOption(option, true);
+                }
+            </script>
+        </div>
+
+        
+
+      <footer class="admin-content-footer">
+        <hr>
+        <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+      </footer>
+    </div>
+    <!-- content end -->
+    </div>
+  </div>
+
+
+  <a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+
+
+
+  <!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+  <!--[if (gte IE 9)|!(IE)]><!-->
+  <script src="assets/js/jquery.min.js"></script>
+  <!--<![endif]-->
+  <script src="assets/js/amazeui.min.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+
+</html>

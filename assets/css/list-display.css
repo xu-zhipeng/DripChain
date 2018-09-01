@@ -1,0 +1,74 @@
+/* Write your styles */
+.admin-content-bodyadd{
+	background-color: #f3f3f3;
+}
+.list-display-main{
+	width: 98%;padding-left: 3%;margin-left:2%; padding-right: 5%;padding-top:40px;background-color: white;padding-bottom: 20px;height: 600px;border-radius: 5px;
+}
+.list-display-main-left{
+	height: 450px;float: left;width: 30%;background-color: #f3f3f3;border-radius: 5px;
+}
+.list-display-main-left-top{
+	height: 60px;width: 100%;padding-top: 15px;padding-left: 20px; border-bottom: #cccccc solid 1px;
+}
+.am-input-group-smadd
+{
+	width: 90%;
+}
+.list-display-main-ul{
+	list-style-type: none;margin-left: -30px;
+}
+.list-display-main-li-div1{
+	height: 80px;width: 100%;padding-top: 20px;padding-left: 20px; border-bottom: #cccccc solid 1px;
+}
+.list-display-main-li-div1-img{
+	float: left;margin-top: 13px;
+}
+.list-display-main-li-div2{
+	margin-left: 50px;
+}
+.list-display-main-li-div2-a{
+	line-height: 30px;
+}
+.list-display-main-li-div2-span{
+	line-height: 30px; font-size: 14px;color: rgb(102,102,102);
+}
+.list-display-main-right{
+	height: 100%;margin-left:2%;float: left;width: 68%;background-color:white;padding-top: 5px;
+}
+.list-display-main-right-img{
+	height: 30px;width: 40px;cursor: pointer;
+}
+.list-display-main-right-ul{
+	list-style-type: none;margin-left: -30px;
+}
+.list-display-main-right-li-div1{
+	height: 60px;width: 100%;background-color: #f3f3f3;
+}
+.list-display-main-right-li-div2{
+	padding-left: 20px;height: 45px;width: 50%; float: left;color: rgb(102,102,102);padding-top: 15px;font-size: 22px;
+}
+.list-display-main-right-li-div3{
+	float:right;width: 45%;height: 40px;padding-top: 20px;font-size: 16px;
+}
+.list-display-main-right-ul-ul{
+	list-style-type: none;margin-left: -30px;v
+}
+.list-display-main-right-ul-ul-div1{
+	height: 120px;width: 100%;border-bottom: #f3f3f3 solid 2px;text-align: center;
+}
+.list-display-main-right-ul-ul-div2{
+	height: 92%;padding-top:4%;width: 20%;float:left;
+}
+.list-display-main-right-ul-ul-div2-span1{
+	line-height: 40px;
+}
+.list-display-main-right-ul-ul-div2-span2{
+	line-height: 40px; font-size: 14px;color: rgb(102,102,102);
+}
+.list-display-main-right-ul-ul-div1-son{
+	height: 92%;padding-top:4%;width: 20%;float:left;
+}
+.list-display-main-right-ul-ul-div1-son-span1{
+	line-height: 40px; font-size: 14px;color: rgb(102,102,102);
+}
