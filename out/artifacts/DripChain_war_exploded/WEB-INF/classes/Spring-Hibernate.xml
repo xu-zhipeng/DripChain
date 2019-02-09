@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Spring 自动装配 default-autowire="byName" 默认byType(报错因为用注解xml里面没有配置找不到)  使用注解不用配这个  default-lazy-init="false"  默认是false   -->
+<beans default-lazy-init="true"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+	<!-- 加载jdbc.properties配置文件 -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
+	
+	<!-- 开启Spring注解 包扫描 -->
+	<context:component-scan base-package="com.dali">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	
+	<!-- 开启AOP注解 -->
+	<aop:aspectj-autoproxy />
+
+	<!-- 配置DataSource 用C3P0连接池 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driverClass}"></property>
+		<property name="jdbcUrl" value="${jdbc.url}"></property>
+		<property name="user" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+	
+	<!-- 配置hibernate的相关属性 -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 指定使用hibernate核心配置文件 -->
+		<!-- <property name="configLocations" value="classpath:hibernate.cfg.xml"></property> -->
+		<!-- 第一步：配置Hibernate属性与上面的指定hibernate核心配置文件 两个选一个 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.cache.use_query_cache">false</prop>
+				<prop key="hibernate.cache.use_second_level_cache">false</prop>
+				<!--参考：https://blog.csdn.net/irelandken/article/details/7193123
+				Spring提供的接口实现类(Spring为事务管理,也实现了org.hibernate.context.spi.CurrentSessionContext接口)：
+						SpringSessionContext (org.springframework.orm.hibernate5)  当前Session根据Spring和事务管理器来跟踪和界定.
+						SpringJtaSessionContext (org.springframework.orm.hibernate5)
+				Hibernate提供的接口实现类：
+						TheadLocalSessionContext (org.hibernate.context.internal)  当前session通过当前执行的线程来跟踪和界定。
+						JTASessionContext (org.hibernate.context.internal) 当前session根据JTA来跟踪和界定。这和以前的仅支持JTA的方法是完全一样的。
+						ManagedSessionContext (org.hibernate.context.internal)-->
+				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate5.SpringSessionContext</prop>
+
+
+			</props>
+		</property>
+		<!--注当hibernate的xml方式和注解方式同时配置的时候，xml优先级更高(如果找不到xml，则使用注解)-->
+		<!-- 配合Hibernate使用注解  要扫描的包（有两种方式） -->
+		<property name="packagesToScan" value="com.dali.*.entity"/>
+		<!-- 第二种：Hibernate*hbm.xml 映射文件引入(有三种引入方式：mappingResources、mappingLocations、mappingDirectoryLocations(自行百度))  -->
+		<!--<property name="mappingDirectoryLocations" value="classpath:com/dali/*/entity"/>-->
+	</bean>
+	
+	<!-- 第一步 配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<!-- 注入sessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 创建hibernateTemplate对象 -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+		<!-- 注入sessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 第二步 开启事务注解 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!-- 事务xml配置 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED" read-only="false"/>
+			<!--<tx:method name="find*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="query*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="add*"  propagation="REQUIRED"/>
+			<tx:method name="save*"  propagation="REQUIRED"/>
+			<tx:method name="update*"  propagation="REQUIRED"/>
+			<tx:method name="delete*"  propagation="REQUIRED"/>-->
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config proxy-target-class="true"><!-- 为true表示Cglib动态代理，false为JDK动态代理 -->
+		<!-- 表达式：所有公有方法忽略返回值   作用在com.dali包下面的跨几个目录的service包的任意类的任意方法（可以有任意的参数） -->
+		<aop:advisor pointcut="execution(public * com.dali.DripChain..service.*.*(..))" advice-ref="txAdvice"/>
+		<aop:advisor pointcut="execution(public * com.dali.DripChain..dao.*.*(..))" advice-ref="txAdvice"/>
+		<!--<aop:advisor pointcut="!execution(public * com.dali.DripChain..controller.*.*(..))" advice-ref="txAdvice"/>-->
+
+		<!-- 表达式：所有公有方法忽略返回值   作用在com.dali包下面的跨几个目录的任意包的任意类的任意方法（可以有任意的参数） -->
+		<!--<aop:advisor pointcut="execution(public * com.dali.DripChain..*.*(..))" advice-ref="txAdvice"/>-->
+		<aop:advisor pointcut="execution(public * DaoTest.*.*(..))" advice-ref="txAdvice"/>
+	</aop:config>
+
+	<!-- 配置置Quartz 定时器-->
+	<!--注册定时执行任务实体  业务对象-->
+	<bean id="dataLoadQuartz" class="com.dali.DripChain.quartz.DataLoadQuartz"/>
+	<bean id="alarmTriggerQuartz" class="com.dali.DripChain.quartz.AlarmTriggerQuartz"/>
+
+	<!--DataLoadQuartz  start-->
+	<!--注册定时器信息(DataLoadQuartz)   调度业务-->
+	<bean id="dataLoadTaskInfo" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--指定要执行的定时任务类  dataLoadQuartz-->
+		<property name="targetObject" ref="dataLoadQuartz"/>
+		<!--指定定时器任务类要执行的方法名称 这里是execute-->
+		<property name="targetMethod" value="execute"/>
+	</bean>
+	<!--配置定时器任务的调度器(DataLoadQuartz)    调度触发器-->
+	<bean id="dataLoadTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<!--声明要运行的实体-->
+		<property name="jobDetail" ref="dataLoadTaskInfo"/>
+		<!--设置运行时间-->
+		<property name="cronExpression" value="0 * * * * ?"/>
+	</bean>
+	<!--DataLoadQuartz  end-->
+
+	<!--AlarmTriggerQuartz  start-->
+	<!--注册定时器信息(AlarmTriggerQuartz)   调度业务-->
+	<bean id="alarmTaskInfo" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--指定要执行的定时任务类  dataLoadQuartz-->
+		<property name="targetObject" ref="alarmTriggerQuartz"/>
+		<!--指定定时器任务类要执行的方法名称 这里是execute-->
+		<property name="targetMethod" value="execute"/>
+	</bean>
+	<!--配置定时器任务的调度器(AlarmTriggerQuartz)    调度触发器-->
+	<bean id="alarmTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<!--声明要运行的实体-->
+		<property name="jobDetail" ref="alarmTaskInfo"/>
+		<!--设置运行时间-->
+		<property name="cronExpression" value="0/5 * * * * ?"/>
+	</bean>
+	<!--AlarmTriggerQuartz  end-->
+
+	<!--注册监听器   调度工厂-->
+	<bean id="registerQuartz" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<!--注册定时器实体 集合-->
+		<property name="triggers">
+			<list>
+				<ref bean="dataLoadTrigger"/>
+				<ref bean="alarmTrigger"/>
+			</list>
+		</property>
+	</bean>
+
+
+
+	<!-- 注入实体类bean -->
+	<!-- <bean id="userDao" class="com.dali.DripChain.dao.tbUserDaoao"></bean>
+	<bean id="userService" class="com.dali.DripChain.service.tbUserServicece"></bean>
+	<bean id="userController" class="com.dali.DripChain.controller.tbUserController"></bean> -->
+	
+</beans>
+
+
+
+
+
+
+
+
+

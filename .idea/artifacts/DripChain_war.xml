@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="DripChain:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/DripChain_war</output-path>
+    <root id="archive" name="DripChain_war.war">
+      <element id="artifact" artifact-name="DripChain:war exploded" />
+    </root>
+  </artifact>
+</component>

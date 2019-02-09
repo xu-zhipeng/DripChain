@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-autowire="byName" default-lazy-init="true"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+	<!-- 加载jdbc.properties配置文件 -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
+	
+	<!-- 开启Spring注解 包扫描 -->
+	<context:component-scan base-package="com.dali">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	
+	<!-- 开启AOP注解 -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+	<!-- 配置DataSource 用C3P0连接池 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driverClass}"></property>
+		<property name="jdbcUrl" value="${jdbc.url}"></property>
+		<property name="user" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+	
+	<!-- 配置hibernate的相关属性 -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		
+		<!-- 指定使用hibernate核心配置文件 -->
+		<!-- <property name="configLocations" value="classpath:hibernate.cfg.xml"></property> -->
+		<!-- 第一步：配置Hibernate属性与上面的指定hibernate核心配置文件 两个选一个 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<!-- <prop key="hibernate.cache.use_second_level_cache">false</prop>
+				<prop key="hibernate.cache.use_query_cache">false</prop>
+				Thread配置以后HibernateDaoSupport会不能用
+				<prop key="hibernate.current_session_context_class">thread</prop> -->
+			</props>
+		</property>
+		<!-- 第二步：配置映射文件引入(两种引入方式)  -->
+		<property name="mappingLocations" value="classpath:com/dali/DripChain/entity/*.hbm.xml"></property>
+		<!-- <property name="mappingResources">
+			<list>
+				<value>com/dali/DripChain/entity/User.hbm.xml</value>
+			</list>
+		</property> -->
+		<!-- 配合Hibernate使用注解  要扫描的包 -->
+		<property name="packagesToScan">
+			<list>
+				<value>com.dali.*.entity</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 第一步 配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<!-- 注入sessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 创建hibernateTemplate对象 -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+		<!-- 注入sessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 第二步 开启事务注解 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!-- 事务xml配置 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="find*" read-only="true" />
+			<tx:method name="add*"  propagation="REQUIRED"/>
+			<tx:method name="update*"  propagation="REQUIRED"/>
+			<tx:method name="delete*"  propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config proxy-target-class="true"><!-- 为true表示Cglib动态代理，false为JDK动态代理 -->
+		<!-- 表达式：所有公有方法忽略返回值   作用在com.dali包下面的跨几个目录的service包的任意类的任意方法（可以有任意的参数） -->
+		<!-- <aop:advisor pointcut="execution(public * com.dali.DripChain..service.*.*(..))" advice-ref="txAdvice"/>
+		<aop:advisor pointcut="execution(public * com.dali.DripChain.dao.*.*(..))" advice-ref="txAdvice"/> -->
+		
+		<!-- 表达式：所有公有方法忽略返回值   作用在com.dali包下面的跨几个目录的任意包的任意类的任意方法（可以有任意的参数） -->
+		<aop:advisor pointcut="execution(public * com.dali.DripChain..*.*(..))" advice-ref="txAdvice"/>
+	</aop:config>
+	
+	
+	
+	<!-- 注入实体类bean -->
+	<!-- <bean id="userDao" class="com.dali.DripChain.dao.UserDao"></bean>
+	
+	<bean id="userService" class="com.dali.DripChain.service.UserService"></bean>
+	
+	<bean id="userController" class="com.dali.DripChain.controller.UserController"></bean> -->
+	
+</beans>
+
+
+
+
+
+
+
+
+

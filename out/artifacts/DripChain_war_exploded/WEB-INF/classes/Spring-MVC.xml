@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	
+	<!-- 开启Spring注解 包扫描 -->
+	<context:component-scan base-package="com.dali">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+	</context:component-scan>
+
+	<!-- 开启AOP注解 -->
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
+
+	<!-- 配置MVC注解 -->
+	<mvc:annotation-driven />
+	
+	<!-- 配置内部资源视图解析器 -->
+	 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		 <!-- 前缀 -->
+		<property name="prefix" value="/views/"/>
+		 <!-- 后缀 -->
+		<property name="suffix" value=".jsp"/>
+		 <!--执行顺序值越低越优先-->
+		 <!--<property name="order" value="1"/>-->
+	 </bean>
+
+	<!-- 配置拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/Login/*" />
+			<mvc:exclude-mapping path="/views/**" />
+			<bean class="com.dali.DripChain.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+
+	<!--静态资源访问(两种选一种)-->
+	<!-- 在SpringMVC3.0之后推荐使用一： -->
+	<mvc:default-servlet-handler/>
+	<!--SpringMVC3.0之前可以使用-->
+	<!--<mvc:resources location="/views/" mapping="/views/**"></mvc:resources>-->
+
+
+	<!-- 附件上传限制 -->
+	 <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	    <property name="maxUploadSize" value="1024000"/>
+	    <property name="defaultEncoding" value="UTF-8"/>
+	</bean>
+
+	<!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"></bean>
+
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="cacheSeconds" value="0"></property>
+		<property name="messageConverters">
+			<list>
+				<ref bean="mappingJacksonHttpMessageConverter"/>
+				<ref bean="mappingStringHttpMessageConverter"/>
+			</list>
+		</property>
+		<property name="webBindingInitializer" ref="webBindingInitializer"></property>
+	</bean>
+
+	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.cbor.MappingJackson2CborHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<bean class="org.springframework.http.MediaType">
+					<constructor-arg index="0" value="application"></constructor-arg>
+					<constructor-arg index="1" value="json"></constructor-arg>
+					<constructor-arg index="2" value="UTF-8"></constructor-arg>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="mappingStringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>test/plain;charset=UTF-8</value>
+				<value>application/json;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean> -->
+	
+</beans>
+
+
+
+
+
+
+
+
+
+

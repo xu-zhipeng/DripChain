@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.dali.DripChain.entity.Datapoint" table="tb_datapoint" schema="db_dripchain">
+        <id name="id">
+            <column name="id" sql-type="int(11)"/>
+        </id>
+        <property name="sName">
+            <column name="sName" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="iTemplateIds">
+            <column name="iTemplateIds" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="iType">
+            <column name="iType" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="iWriteRead">
+            <column name="iWriteRead" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="iValueKind">
+            <column name="iValueKind" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="iLength">
+            <column name="iLength" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="sUnit">
+            <column name="sUnit" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sRegister">
+            <column name="sRegister" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="iDecimalAccuracy">
+            <column name="iDecimal_accuracy" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="sFormula">
+            <column name="sFormula" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="iStorage">
+            <column name="iStorage" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="sDescription">
+            <column name="sDescription" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sCustomFields">
+            <column name="sCustomFields" sql-type="varchar(255)" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

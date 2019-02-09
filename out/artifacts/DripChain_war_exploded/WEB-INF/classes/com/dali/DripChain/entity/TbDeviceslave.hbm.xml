@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.dali.DripChain.entity.TbDeviceslave" table="tb_deviceslave" schema="db_dripchain">
+        <id name="id">
+            <column name="id" sql-type="int(11)"/>
+        </id>
+        <property name="iCreator">
+            <column name="iCreator" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="iDataTemplateId">
+            <column name="iDataTemplateId" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="iUid">
+            <column name="iUid" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="iUpdator">
+            <column name="iUpdator" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="sSlaveAddr">
+            <column name="sSlaveAddr" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sSlaveIndex">
+            <column name="sSlaveIndex" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sSlaveName">
+            <column name="sSlaveName" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="tCreateDate">
+            <column name="tCreateDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="tUpdateDate">
+            <column name="tUpdateDate" sql-type="datetime" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

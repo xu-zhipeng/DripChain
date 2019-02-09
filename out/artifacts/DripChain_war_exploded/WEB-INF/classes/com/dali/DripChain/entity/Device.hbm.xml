@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.dali.DripChain.entity.Device" table="tb_device" schema="db_dripchain">
+        <id name="id">
+            <column name="id" sql-type="int(11)"/>
+        </id>
+        <property name="iCompanyId">
+            <column name="iCompanyId" sql-type="int(11)"/>
+        </property>
+        <property name="iGovernmentId">
+            <column name="iGovernmentId" sql-type="int(11)"/>
+        </property>
+        <property name="sDeviceName">
+            <column name="sDeviceName" sql-type="varchar(255)"/>
+        </property>
+        <property name="iDeviceGroupId">
+            <column name="iDeviceGroupId" sql-type="int(11)"/>
+        </property>
+        <property name="sDeviceStatus">
+            <column name="sDeviceStatus" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sDevicePass">
+            <column name="sDevicePass" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sHardver">
+            <column name="sHardver" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sSoftver">
+            <column name="sSoftver" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sImg">
+            <column name="sImg" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sLength">
+            <column name="sLength" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sCustomFields">
+            <column name="sCustomFields" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="dDeviceLongitude">
+            <column name="dDeviceLongitude" sql-type="decimal(10,7)" precision="10" scale="7"/>
+        </property>
+        <property name="dDeciceLatitude">
+            <column name="dDeciceLatitude" sql-type="decimal(10,7)" precision="10" scale="7"/>
+        </property>
+        <property name="sDeviceAddress">
+            <column name="sDeviceAddress" sql-type="varchar(255)"/>
+        </property>
+        <property name="sSn">
+            <column name="sSN" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="iProtocol">
+            <column name="iProtocol" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="iPollingInterval">
+            <column name="iPollingInterval" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="iDeviceType">
+            <column name="iDeviceType" sql-type="int(11)"/>
+        </property>
+        <property name="sQRcode">
+            <column name="sQRcode" sql-type="varchar(255)" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

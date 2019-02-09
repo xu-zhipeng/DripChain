@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.dali.DripChain.entity.AlarmAlarmmodesList" table="alarm_alarmmodes_list" schema="db_dripchain">
+        <composite-id mapped="true" class="com.dali.DripChain.entity.AlarmAlarmmodesListPK">
+            <key-property name="alarmId">
+                <column name="Alarm_id" sql-type="int(11)"/>
+            </key-property>
+            <key-property name="listIndex">
+                <column name="list_index" sql-type="int(11)"/>
+            </key-property>
+        </composite-id>
+        <property name="alarmModes">
+            <column name="alarmModes" sql-type="int(11)" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

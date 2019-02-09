@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.dali.DripChain.entity.Contact" table="tb_contact" schema="db_dripchain">
+        <id name="id">
+            <column name="id" sql-type="int(11)"/>
+        </id>
+        <property name="sEmail">
+            <column name="sEmail" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sName">
+            <column name="sName" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sNote">
+            <column name="sNote" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sPhone">
+            <column name="sPhone" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sWeChat">
+            <column name="sWeChat" sql-type="varchar(255)" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

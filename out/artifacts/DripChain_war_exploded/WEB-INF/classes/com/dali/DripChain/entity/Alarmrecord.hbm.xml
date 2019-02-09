@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.dali.DripChain.entity.Alarmrecord" table="tb_alarmrecord" schema="db_dripchain">
+        <id name="id">
+            <column name="id" sql-type="int(11)"/>
+        </id>
+        <property name="iCompanyId">
+            <column name="iCompanyId" sql-type="int(11)"/>
+        </property>
+        <property name="iDeviceId">
+            <column name="iDeviceId" sql-type="int(11)"/>
+        </property>
+        <property name="iSensorId">
+            <column name="iSensorId" sql-type="int(11)"/>
+        </property>
+        <property name="sAlarmedValue">
+            <column name="sAlarmedValue" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sAlarmContent">
+            <column name="sAlarmContent" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="dAlarmTime">
+            <column name="dAlarmTime" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="sHandlingStatus">
+            <column name="sHandlingStatus" sql-type="varchar(255)" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

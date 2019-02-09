@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html class="no-js fixed-layout">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html" />
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <title>留言反馈</title>
+  <meta name="description" content="这是一个 index 页面">
+  <meta name="keywords" content="index">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="/DripChain/views/static/images/dripicon.png">
+  <link rel="apple-touch-icon-precomposed" href="/DripChain/views/static/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="/DripChain/views/static/css/amazeui.min.css" />
+  <link rel="stylesheet" href="/DripChain/views/static/css/admin.css">
+  <link rel="stylesheet" type="text/css" href="map-display.css">
+  <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+  </script>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=X62bMVYNWyuoXiE2n91bsylO9ssyZPwM"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#xiala ul").hide();   ////初始化隐藏状态
+      $("#xiala li a").click(function () {
+        if ($(this).next("ul").is(":visible")) {
+          $(this).next("ul").slideUp(100);
+        } else {
+          // $("#favorite ul").slideUp(100);//打开之前把其他的关掉
+          $(this).next("ul").slideDown(100);
+        }
+      });
+    });
+    $(function () {
+      $("#admin-offcanvas").show();
+      $(".am-icon-list.am-margin-left").click(function () {
+        if ($("#admin-offcanvas").is(":visible")) {
+          $("#admin-offcanvas").hide();
+        } else {
+          $("#admin-offcanvas").show();
+        }
+      });
+    });
+  </script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+    body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+    </style>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=X62bMVYNWyuoXiE2n91bsylO9ssyZPwM"></script>
+<body>
+    <header class="am-topbar am-topbar-inverse admin-header">
+    <div class="am-topbar-brand">
+      <strong>Amaze UI</strong>
+      <small>后台管理模板</small>
+      <div class="am-icon-list am-margin-left">
+
+      </div>
+    </div>
+
+
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}">
+      <span class="am-sr-only">导航切换</span>
+      <span class="am-icon-bars"></span>
+    </button>
+
+    <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+      <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+        <li>
+          <a href="javascript:;">
+            <span class="am-icon-envelope-o"></span> 收件箱
+            <span class="am-badge am-badge-warning">5</span>
+          </a>
+        </li>
+        <li class="am-dropdown" data-am-dropdown>
+          <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+            <span class="am-icon-users"></span> 管理员
+            <span class="am-icon-caret-down"></span>
+          </a>
+          <ul class="am-dropdown-content">
+            <li>
+              <a href="#">
+                <span class="am-icon-user"></span> 资料</a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="am-icon-cog"></span> 设置</a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="am-icon-power-off"></span> 退出</a>
+            </li>
+          </ul>
+        </li>
+        <li class="am-hide-sm-only">
+          <a href="javascript:;" id="admin-fullscreen">
+            <span class="am-icon-arrows-alt"></span>
+            <span class="admin-fullText">开启全屏</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="am-cf admin-main">
+    <!-- sidebar start -->
+    <div class="admin-sidebar am-offcanvas" id="admin-offcanvas" style="overflow-x: hidden; overflow-y: auto;margin-right: -15px;">
+      <div class="am-offcanvas-bar admin-offcanvas-bar">
+        <ul id="xiala" class="am-list admin-sidebar-list">
+          <li>
+            <a href="index.jsp">
+              <span class="am-icon-home"></span> 首页</a>
+          </li>
+    
+          <li class="admin-parent">
+            <a href="javascript:;" class="am-cf">
+              <span class="am-icon-dashboard"></span> 监控中心
+              <span class="am-icon-angle-right am-fr am-margin-right"></span>
+            </a>
+            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+              <li>
+                <a href="Ent-mapDisplay.jsp" class="am-cf">
+                  <span class="am-icon-map-marker"></span> 地图展示
+                  <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                </a>
+              </li>
+              <li>
+                <a href="Ent-listDisplay.jsp">
+                  <span class="am-icon-list"></span> 列表展示</a>
+              </li>
+            </ul>
+          </li>
+          <li class="admin-parent">
+            <a class="am-cf" href="javascript:;">
+              <span class="am-icon-dot-circle-o"></span> 数据分析
+              <span class="am-icon-angle-right am-fr am-margin-right"></span>
+            </a>
+            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+              <li>
+                <a href="Ent-currentData.jsp" class="am-cf">
+                  <span class="am-icon-area-chart"></span> 实时数据
+                  <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                </a>
+              </li>
+              <li>
+                <a href="Ent-dataForecast.jsp">
+                  <span class="am-icon-line-chart"></span> 数据预测</a>
+              </li>
+              <li>
+                <a href="Ent-dataVisual.jsp">
+                  <span class="am-icon-pie-chart"></span> 数据可视化</a>
+              </li>
+              <li>
+                <a href="Ent-historyData.jsp">
+                  <span class="am-icon-clock-o"></span> 历史记录
+                  <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="admin-parent">
+            <a class="am-cf" href="javascript:;">
+              <span class="am-icon-television"></span> 设备管理
+              <span class="am-icon-angle-right am-fr am-margin-right"></span>
+            </a>
+            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+              <li>
+                <a href="equipment-list.html" class="am-cf">
+                  <span class="am-icon-list"></span> 设备列表
+                  <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                </a>
+              </li>
+              <li>
+                <a href="Ent-addDevice.jsp">
+                  <span class="am-icon-plus"></span> 添加设备</a>
+              </li>
+              <li>
+                <a href="Ent-deviceGroupList.jsp">
+                  <span class="am-icon-th"></span> 设备分组
+                  <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+                </a>
+              </li>
+              <li>
+                <a href="Ent-deviceStatus.jsp">
+                  <span class="am-icon-refresh"></span> 设备状态</a>
+              </li>
+            </ul>
+          </li>
+          <li class="admin-parent">
+            <a class="am-cf" href="javascript:;">
+              <span class="am-icon-bell"></span> 超标预警
+              <span class="am-icon-angle-right am-fr am-margin-right"></span>
+            </a>
+            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+              <li>
+                <a href="Ent-alarmList.jsp" class="am-cf">
+                  <span class="am-icon-list"></span> 警报列表
+                  <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                </a>
+              </li>
+              <li>
+                <a href="Ent-addAlarm.jsp">
+                  <span class="am-icon-plus"></span> 添加警报</a>
+              </li>
+              <li>
+                <a href="Ent-contactList.jsp">
+                  <span class="am-icon-group"></span> 报警联系人/组
+                  <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+                </a>
+              </li>
+              <li>
+                <a href="Ent-alarmRecordList.jsp">
+                  <span class="am-icon-calendar"></span> 报警记录</a>
+              </li>
+            </ul>
+          </li>
+          <li class="admin-parent">
+            <a class="am-cf" href="javascript:;">
+              <span class="am-icon-user"></span> 用户中心
+              <span class="am-icon-angle-right am-fr am-margin-right"></span>
+            </a>
+            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+              <li>
+                <a href="add-subuser.html" class="am-cf">
+                  <span class="am-icon-user-plus"></span> 添加子用户
+                  <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                </a>
+              </li>
+              <li>
+                <a href="subuser-list.html">
+                  <span class="am-icon-wrench"></span> 子用户列表</a>
+              </li>
+              <li>
+                <a href="user-password.html">
+                  <span class="am-icon-key"></span> 用户密码
+                  <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+                </a>
+              </li>
+              <li>
+                <a href="communication-password.html">
+                  <span class="am-icon-key"></span> 通讯密码</a>
+              </li>
+              <li>
+                <a href="user-info.html">
+                  <span class="am-icon-user"></span> 个人信息</a>
+              </li>
+              <li>
+                <a href="wechat-bind.html">
+                  <span class="am-icon-wechat"></span> 微信绑定管理</a>
+              </li>
+            </ul>
+          </li>
+          <li class="admin-parent">
+            <a class="am-cf" href="javascript:;">
+              <span class="am-icon-ellipsis-h"></span> 其他
+              <span class="am-icon-angle-right am-fr am-margin-right"></span>
+            </a>
+            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+              <li>
+                <a href="Ent-suggestion.html">
+                  <span class="am-icon-envelope"></span> 留言反馈
+                  <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                </a>
+              </li>
+              <li>
+                <a href="data-export.html">
+                  <span class="am-icon-table"></span> 数据导出
+                  <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+                </a>
+              </li>
+              <li>
+                <a href="web-printing.html">
+                  <span class="am-icon-print"></span> Web打印</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a id="erweima" href="javascript:;" class="list-group-item" title="<h4 align='center'>扫二维码下载APP</h4>" data-container="body"
+              data-toggle="popover" data-placement="right" data-content="<img src='static/images/erweima.jpg' width='200' height='200' />">
+              <span class="am-icon-mobile-phone am-icon-sm"></span>手机端
+            </a>
+          </li>
+          <li>
+            <a href="logout.html">
+              <span class="am-icon-sign-out"></span> 注销</a>
+          </li>
+        </ul>
+        <script>
+          $(function () { $("[data-toggle='popover']").popover({ html: true }); });
+        </script>
+    
+        <div class="am-panel am-panel-default admin-sidebar-panel">
+          <div class="am-panel-bd">
+            <p>
+              <span class="am-icon-bookmark"></span> 公告</p>
+            <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
+          </div>
+        </div>
+    
+        <div class="am-panel am-panel-default admin-sidebar-panel">
+          <div class="am-panel-bd">
+            <p>
+              <span class="am-icon-tag"></span> wiki</p>
+            <p>Welcome to the Amaze UI wiki!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- sidebar end -->
+
+    <!-- content start -->
+    <div class="admin-content">
+          <div class="admin-content-body">
+      <div class="am-cf am-padding am-padding-bottom-0">
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">意见反馈</strong> / <small>Personal Suggestion</small></div>
+      </div>
+
+      <hr/>
+
+      <div class="am-g">
+        <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
+
+        </div>
+
+        <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
+          <form class="am-form am-form-horizontal">
+            <div class="am-form-group">
+              <label for="user-theme" class="am-u-sm-3 am-form-label">主题 / Theme</label>
+              <div class="am-u-sm-9">
+                <input type="text" id="user-theme" placeholder="主题 / Theme">
+                <small>输入您的主题..</small>
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <label for="user-name" class="am-u-sm-3 am-form-label">姓名 / Name</label>
+              <div class="am-u-sm-9">
+                <input type="text" id="user-name" placeholder="输入您的姓名 / Name">
+                <small>输入您的名字，让我们记住你。</small>
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <label for="user-phone" class="am-u-sm-3 am-form-label">电话 / Telephone</label>
+              <div class="am-u-sm-9">
+                <input type="tel" id="user-phone" placeholder="输入你的电话号码 / Telephone">
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <label for="user-QQ" class="am-u-sm-3 am-form-label">QQ</label>
+              <div class="am-u-sm-9">
+                <input type="number" pattern="[0-9]*" id="user-QQ" placeholder="输入你的QQ号码">
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <label for="user-weibo" class="am-u-sm-3 am-form-label">微博 / Twitter</label>
+              <div class="am-u-sm-9">
+                <input type="text" id="user-weibo" placeholder="输入你的微博 / Twitter">
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <label for="user-email" class="am-u-sm-3 am-form-label">邮箱 / Email</label>
+              <div class="am-u-sm-9">
+                <input type="text" id="user-email" placeholder="输入你的邮箱 / Email">
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <label for="user-intro" class="am-u-sm-3 am-form-label">留言内容 / Message</label>
+              <div class="am-u-sm-9">
+                <textarea class="" rows="5" id="user-intro" placeholder="输入您的意见"></textarea>
+                <small>我们会认真读取您的意见~</small>
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <div class="am-u-sm-9 am-u-sm-push-3">
+                <button type="button" class="am-btn am-btn-primary">提交留言</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div>
+    <!-- content end -->
+
+  </div>
+
+</body>
+</html>
+<script type="text/javascript">
+    // 百度地图API功能
+    var map = new BMap.Map("allmap");    // 创建Map实例
+    map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
+    //添加地图类型控件
+    map.addControl(new BMap.MapTypeControl({
+        mapTypes:[
+            BMAP_NORMAL_MAP,
+            BMAP_HYBRID_MAP
+        ]}));     
+    map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+    map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+</script>

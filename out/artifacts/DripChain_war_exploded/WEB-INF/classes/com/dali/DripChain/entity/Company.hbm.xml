@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.dali.DripChain.entity.Company" table="tb_company" schema="db_dripchain">
+        <id name="id">
+            <column name="id" sql-type="int(255)"/>
+        </id>
+        <property name="sUserRight">
+            <column name="sUserRight" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sUserName">
+            <column name="sUserName" sql-type="varchar(255)"/>
+        </property>
+        <property name="sPassword">
+            <column name="sPassword" sql-type="varchar(255)"/>
+        </property>
+        <property name="sGoc">
+            <column name="sGOC" sql-type="varchar(255)"/>
+        </property>
+        <property name="sCompanyName">
+            <column name="sCompanyName" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sCompanyType">
+            <column name="sCompanyType" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sCompanyAddress">
+            <column name="sCompanyAddress" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sCompanyTelephone">
+            <column name="sCompanyTelephone" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sEmail">
+            <column name="sEmail" sql-type="varchar(255)" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
