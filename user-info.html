@@ -4,8 +4,6 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta http-equiv="Content-Type" content="text/html" />
-  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
   <title>Amaze UI Admin index Examples</title>
   <meta name="description" content="这是一个 index 页面">
   <meta name="keywords" content="index">
@@ -17,10 +15,8 @@
   <meta name="apple-mobile-web-app-title" content="Amaze UI" />
   <link rel="stylesheet" href="static/css/amazeui.min.css" />
   <link rel="stylesheet" href="static/css/admin.css">
-  <link rel="stylesheet" type="text/css" href="static/css/map-display.css">
   <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
   </script>
-  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZHFYwQrlZ0DGrvkU1iEsu2OSDyOG4df3"></script>
   <script type="text/javascript">
     $(function () {
       $("#xiala ul").hide();   ////初始化隐藏状态
@@ -57,11 +53,8 @@
       <strong>Amaze UI</strong>
       <small>后台管理模板</small>
       <div class="am-icon-list am-margin-left">
-
       </div>
     </div>
-
-
     <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}">
       <span class="am-sr-only">导航切换</span>
       <span class="am-icon-bars"></span>
@@ -314,96 +307,64 @@
 
     <!-- content start -->
     <div class="admin-content">
-
-          <div  style="width:100%;height:550px;z-index:1;" id="allmap">
-
-
+      <div class="admin-content-body">
+        <div class="am-cf am-padding">
+          <div class="am-fl am-cf">
+            <strong class="am-text-primary am-text-lg">用户信息</strong>
+            <small>用户信息</small>
+        </div>
+      </div>
+      <hr/>
+      <div class="am-tabs data-am-tabs">
+        <div class="am-tabs-bd">
+          <form class="am-form">
+            <div class="am-g am-margin-top">
+              <div class="am-u-sm-4 am-u-md-4 am-text-right">用户名:</div>
+              <div class="am-u-sm-8 am-u-md-4 am-u-end col-end">
+                  <input type="text" class="am-input-sm" placeholder="请输入新的用户名">
+              </div>
+            </div>
+            <div class="am-g am-margin-top">
+                <div class="am-u-sm-4 am-u-md-4 am-text-right">公司名:</div>
+                <div class="am-u-sm-8 am-u-md-4 am-u-end col-end">
+                    <input type="text" class="am-input-sm" placeholder="请输入公司名">
+                </div>
+              </div>
+              <div class="am-g am-margin-top">
+                  <div class="am-u-sm-4 am-u-md-4 am-text-right">公司地址:</div>
+                  <div class="am-u-sm-8 am-u-md-4 am-u-end col-end">
+                      <input type="text" class="am-input-sm" placeholder="请输入公司地址">
+                  </div>
+                </div>
+                <div class="am-g am-margin-top">
+                    <div class="am-u-sm-4 am-u-md-4 am-text-right">手机号:</div>
+                    <div class="am-u-sm-8 am-u-md-4 am-u-end col-end">
+                        <input type="text" class="am-input-sm" placeholder="请输入手机号">
+                    </div>
+                  </div>
+                  <div class="am-g am-margin-top-sm">
+                      <div class="am-u-sm-12 am-u-md-4 am-text-right admin-form-text">
+                        内容描述：
+                      </div>
+                      <div class="am-u-sm-12 am-u-md-8">
+                        <textarea rows="10" placeholder="你好！欢迎使用！！"></textarea>
+                      </div>
+                    </div>
+                    <div class="am-margin am-text-center">
+                        <button type="button" class="am-btn am-btn-primary am-btn-xs">提交保存</button>
+                        <button type="button" class="am-btn am-btn-primary am-btn-xs">放弃保存</button>
+                      </div>
+          </form>
+        </div>
+      </div>
+      <footer class="admin-content-footer am-text-center">
+        
+        <p class="am-padding-left">© 2015级毕业小组</p>
+      </footer>
     </div>
     <!-- content end -->
-        <div class="up-map-div">
-          <div class="up-map-div-top">          
-            <div class="am-input-group am-input-group-sm" style="width: 90%;">
-              <input type="text" class="am-form-field" placeholder="设备编号或名称">
-              <span class="am-input-group-btn">
-              <button class="am-btn am-btn-default" type="button">查询</button>
-              </span>
-            </div>
-            
-        </div>
-        <ul class="up-map-div-ul">
-            <li>
-              <div class="up-map-div-li-div1">
-                <div class="up-map-div-li-div2"><img src="static/images/2.png"></div>
-                <div class="up-map-div-li-div3">
-                  <a href="#" class="up-map-div-li-div3-a">共享按摩椅</a><br>
-                      <span class="up-map-div-li-div3-span">00004299015953132138</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="up-map-div-li-div1">
-                <div class="up-map-div-li-div2"><img src="static/images/2.png"></div>
-                <div class="up-map-div-li-div3">
-                  <a href="#" class="up-map-div-li-div3-a">共享按摩椅</a><br>
-                      <span class="up-map-div-li-div3-span">00004299015953132138</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="up-map-div-li-div1">
-                <div class="up-map-div-li-div2"><img src="static/images/2.png"></div>
-                <div class="up-map-div-li-div3">
-                  <a href="#" class="up-map-div-li-div3-a">共享按摩椅</a><br>
-                      <span class="up-map-div-li-div3-span">00004299015953132138</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="up-map-div-li-div1">
-                <div class="up-map-div-li-div2"><img src="static/images/2.png"></div>
-                <div class="up-map-div-li-div3">
-                  <a href="#" class="up-map-div-li-div3-a">共享按摩椅</a><br>
-                      <span class="up-map-div-li-div3-span">00004299015953132138</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="up-map-div-li-div1">
-                <div class="up-map-div-li-div2"><img src="static/images/2.png"></div>
-                <div class="up-map-div-li-div3">
-                  <a href="#" class="up-map-div-li-div3-a">共享按摩椅</a><br>
-                      <span class="up-map-div-li-div3-span">00004299015953132138</span>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
+
   </div>
-
-
-  <!--[if lt IE 9]>
-    <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-    <script src="static/js/amazeui.ie8polyfill.min.js"></script>
-    <![endif]-->
-
-  <!--[if (gte IE 9)|!(IE)]><!-->
-  <script src="static/js/jquery.min.js"></script>
-  <!--<![endif]-->
-  <script src="static/js/amazeui.min.js"></script>
-  <script src="static/js/app.js"></script>
+  </div>
 </body>
-
 </html>
-<script type="text/javascript">
-    // 百度地图API功能
-    var map = new BMap.Map("allmap");    // 创建Map实例
-    map.centerAndZoom(new BMap.Point(116.404, 39.915), 2);  // 初始化地图,设置中心点坐标和地图级别
-    //添加地图类型控件
-    map.addControl(new BMap.MapTypeControl({
-        mapTypes:[
-            BMAP_NORMAL_MAP,
-            BMAP_HYBRID_MAP
-        ]}));     
-    map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
-</script>

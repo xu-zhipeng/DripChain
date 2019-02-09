@@ -1,0 +1,458 @@
+<!doctype html>
+<html class="no-js fixed-layout">
+        <head>
+                <meta charset="utf-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <title>水滴链 | 设备状态</title>
+                <meta name="description" content="这是一个 index 页面">
+                <meta name="keywords" content="index">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <meta name="renderer" content="webkit">
+                <meta http-equiv="Cache-Control" content="no-siteapp" />
+                <link rel="icon" type="image/png" href="static/images/dripicon.png">
+                <link rel="apple-touch-icon-precomposed" href="static/i/app-icon72x72@2x.png">
+                <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+                <link rel="stylesheet" href="static/css/amazeui.min.css" />
+                <link rel="stylesheet" href="static/css/admin.css">
+                <script src="static/js/jquery2.1.4.min.js"></script>
+                
+                <script type="text/javascript">
+                  $(function () {     //下拉框js
+                      $("#xiala ul").hide();   ////初始化隐藏状态
+                      $("#xiala li a").click(function () {
+                        if ($(this).next("ul").is(":visible")) {
+                          $(this).next("ul").slideUp(100);
+                        } else {
+                          // $("#xiala ul").slideUp(100);//打开之前把其他的关掉
+                          $(this).next("ul").slideDown(100);
+                        }
+                      });
+                    });
+                  $(function () {     //侧边栏隐藏js
+                    $("#admin-offcanvas").show();
+                    $(".am-icon-list.am-margin-left").click(function () {
+                      if ($("#admin-offcanvas").is(":visible")) {
+                        $("#admin-offcanvas").hide();
+                      } else {
+                        $("#admin-offcanvas").show();
+                      }
+                    });
+                  });
+                </script>
+              </head>
+        <body>
+                <header class="am-topbar am-topbar-inverse admin-header">
+                        <div class="am-topbar-brand">
+                          <strong>水滴链</strong>
+                          <small>欢迎您访问！</small>
+                          <div class="am-icon-list am-margin-left">
+                      
+                          </div>
+                        </div>
+                      
+                      
+                        <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}">
+                          <span class="am-sr-only">导航切换</span>
+                          <span class="am-icon-bars"></span>
+                        </button>
+                      
+                        <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+                      
+                          <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+                            <li>
+                              <a href="javascript:;">
+                                <span class="am-icon-envelope-o"></span> 留言反馈
+                                <!-- <span class="am-badge am-badge-warning">5</span> -->
+                              </a>
+                            </li>
+                            <li class="am-dropdown" data-am-dropdown>
+                              <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                                <span class="am-icon-users"></span> 个人
+                                <span class="am-icon-caret-down"></span>
+                              </a>
+                              <ul class="am-dropdown-content">
+                                <li>
+                                  <a href="#">
+                                    <span class="am-icon-user"></span> 资料</a>
+                                </li>
+                                <li>
+                                  <a href="#">
+                                    <span class="am-icon-cog"></span> 设置</a>
+                                </li>
+                                <li>
+                                  <a href="#">
+                                    <span class="am-icon-power-off"></span> 退出</a>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="am-hide-sm-only">
+                              <a href="javascript:;" id="admin-fullscreen">
+                                <span class="am-icon-arrows-alt"></span>
+                                <span class="admin-fullText">开启全屏</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </header>
+                <div class="am-cf admin-main">
+                        <div class="admin-sidebar am-offcanvas" id="admin-offcanvas" style="overflow-x: hidden; overflow-y: auto;margin-right: -15px;">
+                                <div class="am-offcanvas-bar admin-offcanvas-bar"  >
+                                  <ul  id="xiala" class="am-list admin-sidebar-list">
+                                    <li>
+                                      <a href="index.html">
+                                        <span class="am-icon-home"></span> 首页</a>
+                                    </li>
+                                    
+                                    <li class="admin-parent">
+                                      <a href="javascript:;" class="am-cf">
+                                        <span class="am-icon-dashboard"></span> 监控中心
+                                        <span class="am-icon-angle-right am-fr am-margin-right"></span>
+                                      </a>
+                                      <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                                        <li>
+                                          <a href="Ent-map-display.html" class="am-cf">
+                                            <span class="am-icon-map-marker"></span> 地图展示
+                                            <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="Ent-list-display.html">
+                                            <span class="am-icon-list"></span> 列表展示</a>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li class="admin-parent">
+                                      <a class="am-cf" href="javascript:;">
+                                        <span class="am-icon-dot-circle-o"></span> 数据分析
+                                        <span class="am-icon-angle-right am-fr am-margin-right"></span>
+                                      </a>
+                                      <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                                        <li>
+                                          <a href="current-data.html" class="am-cf">
+                                            <span class="am-icon-area-chart"></span> 实时数据
+                                            <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="data-forecast.html">
+                                            <span class="am-icon-line-chart"></span> 数据预测</a>
+                                        </li>
+                                        <li>
+                                          <a href="visual-data.html">
+                                            <span class="am-icon-pie-chart"></span> 数据可视化</a>
+                                        </li>
+                                        <li>
+                                          <a href="history-data.html">
+                                            <span class="am-icon-clock-o"></span> 历史记录
+                                            <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+                                          </a>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li class="admin-parent">
+                                      <a class="am-cf" href="javascript:;">
+                                        <span class="am-icon-building"></span> 企业管理
+                                        <span class="am-icon-angle-right am-fr am-margin-right"></span>
+                                      </a>
+                                      <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                                        <!-- <li>
+                                          <a href="enterprise-update.html" class="am-cf">
+                                            <span class="am-icon-wrench"></span> 企业更新
+                                            <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                                          </a>
+                                        </li> -->
+                                        <li>
+                                          <a href="enterprise-check.html">
+                                            <span class="am-icon-check"></span> 待审核</a>
+                                        </li>
+                                        <li>
+                                          <a href="enterprise-pass.html">
+                                            <span class="am-icon-list"></span> 审核通过</a>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li class="admin-parent">
+                                      <a class="am-cf" href="javascript:;">
+                                        <span class="am-icon-bell"></span> 超标提醒
+                                        <span class="am-icon-angle-right am-fr am-margin-right"></span>
+                                      </a>
+                                      <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                                        <li>
+                                          <a href="gov-overList.html" class="am-cf">
+                                            <span class="am-icon-list"></span> 超标列表
+                                            <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="gov-newTickets.html">
+                                            <span class="am-icon-plus"></span> 新增罚单</a>
+                                        </li>
+                                        <li>
+                                          <a href="gov-ticketsList.html">
+                                            <span class="am-icon-calendar"></span> 罚单记录</a>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li class="admin-parent">
+                                      <a class="am-cf" href="javascript:;">
+                                        <span class="am-icon-television"></span> 设备管理
+                                        <span class="am-icon-angle-right am-fr am-margin-right"></span>
+                                      </a>
+                                      <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                                        <li>
+                                          <a href="equipment-list.html" class="am-cf">
+                                            <span class="am-icon-list"></span> 设备列表
+                                            <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="add-equipment.html">
+                                            <span class="am-icon-plus"></span> 添加设备</a>
+                                        </li>
+                                        <li>
+                                          <a href="equipment-grouping.html">
+                                            <span class="am-icon-th"></span> 设备分组
+                                            <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="equipment-status.html">
+                                            <span class="am-icon-refresh"></span> 设备状态</a>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li class="admin-parent">
+                                      <a class="am-cf" href="javascript:;">
+                                        <span class="am-icon-bell"></span> 超标预警
+                                        <span class="am-icon-angle-right am-fr am-margin-right"></span>
+                                      </a>
+                                      <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                                        <li>
+                                          <a href="ent-alarmlist.html" class="am-cf">
+                                            <span class="am-icon-list"></span> 警报列表
+                                            <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="ent-addalarm.html">
+                                            <span class="am-icon-plus"></span> 添加警报</a>
+                                        </li>
+                                        <li>
+                                          <a href="ent-alarmcontacts.html">
+                                            <span class="am-icon-group"></span> 报警联系人/组
+                                            <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="ent-alarmrecord.html">
+                                            <span class="am-icon-calendar"></span> 报警记录</a>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li class="admin-parent">
+                                      <a class="am-cf" href="javascript:;">
+                                        <span class="am-icon-user"></span> 用户中心
+                                        <span class="am-icon-angle-right am-fr am-margin-right"></span>
+                                      </a>
+                                      <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                                        <li>
+                                          <a href="add-user.html" class="am-cf">
+                                            <span class="am-icon-user-plus"></span> 添加用户
+                                            <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="user-rights.html">
+                                            <span class="am-icon-wrench"></span> 用户权限</a>
+                                        </li>
+                                        <li>
+                                          <a href="user-password.html">
+                                            <span class="am-icon-key"></span> 用户密码
+                                            <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="equipment-lock.html">
+                                            <span class="am-icon-lock"></span> 设备加密</a>
+                                        </li>
+                                        <li>
+                                          <a href="communication-password.html">
+                                            <span class="am-icon-key"></span> 通讯密码</a>
+                                        </li>
+                                        <li>
+                                          <a href="user-info.html">
+                                            <span class="am-icon-user"></span> 个人信息</a>
+                                        </li>
+                                        <li>
+                                          <a href="wechat-bind.html">
+                                            <span class="am-icon-wechat"></span> 微信绑定管理</a>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li class="admin-parent">
+                                      <a class="am-cf" href="javascript:;">
+                                        <span class="am-icon-ellipsis-h"></span> 其他
+                                        <span class="am-icon-angle-right am-fr am-margin-right"></span>
+                                      </a>
+                                      <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                                        <li>
+                                          <a href="Ent-suggestion.html">
+                                            <span class="am-icon-envelope"></span> 留言反馈
+                                            <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="data-export.html">
+                                            <span class="am-icon-table"></span> 数据导出
+                                            <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="web-printing.html">
+                                            <span class="am-icon-print"></span> Web打印</a>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <a href="mobile-phone.html">
+                                        <span class="am-icon-mobile-phone am-icon-sm"></span> 手机端</a>
+                                    </li>
+                                    <li>
+                                      <a href="logout.html">
+                                        <span class="am-icon-sign-out"></span> 注销</a>
+                                    </li>
+                                  </ul>
+                          
+                                  <div class="am-panel am-panel-default admin-sidebar-panel">
+                                    <div class="am-panel-bd">
+                                      <p>
+                                        <span class="am-icon-bookmark"></span> 公告</p>
+                                      <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
+                                    </div>
+                                  </div>
+                          
+                                  <div class="am-panel am-panel-default admin-sidebar-panel">
+                                    <div class="am-panel-bd">
+                                      <p>
+                                        <span class="am-icon-tag"></span> wiki</p>
+                                      <p>Welcome to the Amaze UI wiki!</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                        <div class="admin-content">
+                                <div class="admin-content-body">
+                                        <div class="am-cf am-padding">
+                                                <div class="am-fl am-cf">
+                                                  <strong class="am-text-primary am-text-lg">设备状态</strong> /
+                                                  <small>设备状态</small>
+                                                </div>
+                                              </div>
+                                              <hr/>
+                                        <div class="am-g">
+                                                <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
+                                                        <div class="am-panel am-panel-default">
+                                                            <div class="am-panel-bd">
+                                                                <div am-u-md-12 style="text-align: center;"><strong>数据保存</strong><hr/></div>
+                                                                <p>数据保存：线上数据仅保存60天。</p>
+                                                            </div>
+                                                        </div>
+                                
+                                                        <div class="am-panel am-panel-default">
+                                                            <div class="am-panel-bd">
+                                                                <div am-u-md-12 style="text-align: center;">
+                                                                    <strong>关于设备上下线</strong>
+                                                                    <hr/>
+                                                                </div>
+                                                                <p>若3小时内设备无任何数据收发，透传云识别可能为异常，将主动踢掉设备，设备可以重连已保证数据接收。</p>
+                                                            </div>
+                                                        </div>
+                                                        
+                                        
+                                                    </div>
+                                                <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
+                                                    <form class="am-form am-form-horizontal">
+                                                            <table class="am-table am-table-striped am-table-hover table-main">
+                                                                    <tr>
+                                                                            <div class="am-g">
+                                                                              <div class="am-u-lg-6">
+                                                                                <div>
+                                                                                <button type="button" class="am-btn am-btn-primary am-btn-xs">添加设备</button>
+                                                                                </div>
+                                                                              </div>
+                                                                              <div class="am-u-lg-6">
+                                                                               <div class="am-input-group">
+                                                                                 <input type="text" class="am-from-field" placeholder="请输入设备名">
+                                                                                 <span class="am-input-group-btn">
+                                                                                 <button type="button" class="am-btn am-btn-primary am-btn-xs">查询设备</button>
+                                                                                 </span>
+                                                                               </div>
+                                                                              </div> 
+                                                                                </div>
+                                                                        </tr>
+                                                                        <thead>
+                                                                                <tr>
+                                                                                    <th class="table-title ">设备名</th><th class="table-title ">设备ID</th><th class="table-date">时间</th><th class="table-title ">设备状态</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                    <td class="am-hide-sm-only">Business management</td>
+                                                                                    <td class="am-hide-sm-only">123638138138</td>
+                                                                                    <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
+                                                                                    <td class="am-hide-sm-only">上线</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                    <td class="am-hide-sm-only">Business management</td>
+                                                                                    <td class="am-hide-sm-only">123638138138</td>
+                                                                                    <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
+                                                                                    <td class="am-hide-sm-only">上线</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                    <td class="am-hide-sm-only">Business management</td>
+                                                                                    <td class="am-hide-sm-only">123638138138</td>
+                                                                                    <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
+                                                                                    <td class="am-hide-sm-only">上线</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                    <td class="am-hide-sm-only">Business management</td>
+                                                                                    <td class="am-hide-sm-only">123638138138</td>
+                                                                                    <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
+                                                                                    <td class="am-hide-sm-only">上线</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                    <td class="am-hide-sm-only">Business management</td>
+                                                                                    <td class="am-hide-sm-only">123638138138</td>
+                                                                                    <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
+                                                                                    <td class="am-hide-sm-only">上线</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                    <td class="am-hide-sm-only">Business management</td>
+                                                                                    <td class="am-hide-sm-only">123638138138</td>
+                                                                                    <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
+                                                                                    <td class="am-hide-sm-only">上线</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                </table>
+                                                                <div class="am-cf">
+                                                                        共 15条记录
+                                                                        <div>
+                                                                          <ul class="am-pagination am-pagination-centered">
+                                                                            <li class="am-disabled"><a href="#">«</a></li>
+                                                                            <li class="am-active"><a href="#">1</a></li>
+                                                                            <li><a href="#">2</a></li>
+                                                                            <li><a href="#">3</a></li>
+                                                                            <li><a href="#">4</a></li>
+                                                                            <li><a href="#">5</a></li>
+                                                                            <li><a href="#">»</a></li>
+                                                                          </ul>
+                                                                        </div>
+                                                                      </div>
+                                                      </form>
+                                                    </div>
+                                        </div>
+                                </div>
+                            </div>
+                    </div>
+        </body>
+</html>

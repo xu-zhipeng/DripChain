@@ -1,0 +1,893 @@
+<!doctype html>
+<html class="no-js fixed-layout">
+        <head>
+                <meta charset="utf-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <title>水滴链 | 设备列表</title>
+                <meta name="description" content="这是一个 index 页面">
+                <meta name="keywords" content="index">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <meta name="renderer" content="webkit">
+                <meta http-equiv="Cache-Control" content="no-siteapp" />
+                <!--地图开始-->
+                <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />  <!--适应移动设备页面展示-->
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <!--地图的结束-->
+                <link rel="icon" type="image/png" href="static/images/dripicon.png">
+                <link rel="apple-touch-icon-precomposed" href="static/i/app-icon72x72@2x.png">
+                <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+                <link rel="stylesheet" href="static/css/amazeui.min.css" />
+                <link rel="stylesheet" href="static/css/admin.css">
+                <script src="static/js/jquery2.1.4.min.js"></script>
+                <!--地图密钥-->
+                <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=PzCuZhEZIVgALkhC9fMmo9cLMyO2lZZX"></script>
+                <!--结束-->
+                <!--图表引入-->
+                <script type="text/javascript" src="http://echart s.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+                <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+                <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+                <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+                <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+                <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+                <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+                <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+                <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+                <script type="text/javascript"></script>
+                <script type="text/javascript">
+                  $(function () {     //下拉框js
+                      $("#xiala ul").hide();   ////初始化隐藏状态
+                      $("#xiala li a").click(function () {
+                        if ($(this).next("ul").is(":visible")) {
+                          $(this).next("ul").slideUp(100);
+                        } else {
+                          // $("#xiala ul").slideUp(100);//打开之前把其他的关掉
+                          $(this).next("ul").slideDown(100);
+                        }
+                      });
+                    });
+                  $(function () {     //侧边栏隐藏js
+                    $("#admin-offcanvas").show();
+                    $(".am-icon-list.am-margin-left").click(function () {
+                      if ($("#admin-offcanvas").is(":visible")) {
+                        $("#admin-offcanvas").hide();
+                      } else {
+                        $("#admin-offcanvas").show();
+                      }
+                    });
+                  });
+                </script>
+                <!--设置地图样式-->
+        <style type="text/css">  
+          body, html,#allmap {
+              width: 100%;
+              height: 100%;
+              overflow: hidden;
+              margin:0;
+              font-family:"微软雅黑";
+              } 
+          #allmap{
+                  height:500px;
+                  width:100%;
+                  }
+          #r-result{width:100%;
+                   font-size:14px;
+                 }
+          </style>
+          <!--设置地图样式结束-->
+              </head>
+        <body>
+                <header class="am-topbar am-topbar-inverse admin-header">
+                        <div class="am-topbar-brand">
+                          <strong>水滴链</strong>
+                          <small>欢迎您访问！</small>
+                          <div class="am-icon-list am-margin-left">
+                      
+                          </div>
+                        </div>
+                      
+                      
+                        <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}">
+                          <span class="am-sr-only">导航切换</span>
+                          <span class="am-icon-bars"></span>
+                        </button>
+                      
+                        <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+                      
+                          <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+                            <li>
+                              <a href="javascript:;">
+                                <span class="am-icon-envelope-o"></span> 留言反馈
+                                <!-- <span class="am-badge am-badge-warning">5</span> -->
+                              </a>
+                            </li>
+                            <li class="am-dropdown" data-am-dropdown>
+                              <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                                <span class="am-icon-users"></span> 个人
+                                <span class="am-icon-caret-down"></span>
+                              </a>
+                              <ul class="am-dropdown-content">
+                                <li>
+                                  <a href="#">
+                                    <span class="am-icon-user"></span> 资料</a>
+                                </li>
+                                <li>
+                                  <a href="#">
+                                    <span class="am-icon-cog"></span> 设置</a>
+                                </li>
+                                <li>
+                                  <a href="#">
+                                    <span class="am-icon-power-off"></span> 退出</a>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="am-hide-sm-only">
+                              <a href="javascript:;" id="admin-fullscreen">
+                                <span class="am-icon-arrows-alt"></span>
+                                <span class="admin-fullText">开启全屏</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </header>
+                <div class="am-cf admin-main">
+                        <div class="admin-sidebar am-offcanvas" id="admin-offcanvas" style="overflow-x: hidden; overflow-y: auto;margin-right: -15px;">
+                                <div class="am-offcanvas-bar admin-offcanvas-bar"  >
+                                  <ul  id="xiala" class="am-list admin-sidebar-list">
+                                    <li>
+                                      <a href="index.html">
+                                        <span class="am-icon-home"></span> 首页</a>
+                                    </li>
+                                    
+                                    <li class="admin-parent">
+                                      <a href="javascript:;" class="am-cf">
+                                        <span class="am-icon-dashboard"></span> 监控中心
+                                        <span class="am-icon-angle-right am-fr am-margin-right"></span>
+                                      </a>
+                                      <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                                        <li>
+                                          <a href="Ent-map-display.html" class="am-cf">
+                                            <span class="am-icon-map-marker"></span> 地图展示
+                                            <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="Ent-list-display.html">
+                                            <span class="am-icon-list"></span> 列表展示</a>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li class="admin-parent">
+                                      <a class="am-cf" href="javascript:;">
+                                        <span class="am-icon-dot-circle-o"></span> 数据分析
+                                        <span class="am-icon-angle-right am-fr am-margin-right"></span>
+                                      </a>
+                                      <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                                        <li>
+                                          <a href="current-data.html" class="am-cf">
+                                            <span class="am-icon-area-chart"></span> 实时数据
+                                            <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="data-forecast.html">
+                                            <span class="am-icon-line-chart"></span> 数据预测</a>
+                                        </li>
+                                        <li>
+                                          <a href="visual-data.html">
+                                            <span class="am-icon-pie-chart"></span> 数据可视化</a>
+                                        </li>
+                                        <li>
+                                          <a href="history-data.html">
+                                            <span class="am-icon-clock-o"></span> 历史记录
+                                            <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+                                          </a>
+                                        </li>
+                                      </ul>   
+                                    </li>
+                                    <li class="admin-parent">
+                                      <a class="am-cf" href="javascript:;">
+                                        <span class="am-icon-building"></span> 企业管理
+                                        <span class="am-icon-angle-right am-fr am-margin-right"></span>
+                                      </a>
+                                      <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                                        <!-- <li>
+                                          <a href="e nterprise-update.html" class="am-cf">
+                                            <span class="am-icon-wrench"></span> 企业更新
+                                            <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                                          </a>
+                                        </li> -->
+                                        <li>
+                                          <a href="enterprise-check.html">
+                                            <span class="am-icon-check"></span> 待审核</a>
+                                        </li>
+                                        <li>
+                                          <a href="enterprise-pass.html">
+                                            <span class="am-icon-list"></span> 审核通过</a>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li class="admin-parent">
+                                      <a class="am-cf" href="javascript:;">
+                                        <span class="am-icon-bullhorn"></span> 政策公告
+                                        <span class="am-icon-angle-right am-fr am-margin-right"></span>
+                                      </a>
+                                      <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                                        <li>
+                                          <a href="notice-list.html" class="am-cf">
+                                            <span class="am-icon-list"></span> 公告列表
+                                            <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="add-notice.html">
+                                            <span class="am-icon-plus"></span> 添加公告</a>
+                                        </li>
+                                        <li>
+                                          <a href="del-notice.html">
+                                            <span class="am-icon-th"></span> 删除公告
+                                            <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="update-notice.html">
+                                            <span class="am-icon-refresh"></span> 更新公告</a>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li class="admin-parent">
+                                      <a class="am-cf" href="javascript:;">
+                                        <span class="am-icon-bell"></span> 超标提醒
+                                        <span class="am-icon-angle-right am-fr am-margin-right"></span>
+                                      </a>
+                                      <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                                        <li>
+                                          <a href="gov-overList.html" class="am-cf">
+                                            <span class="am-icon-list"></span> 超标列表
+                                            <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="gov-newTickets.html">
+                                            <span class="am-icon-plus"></span> 新增罚单</a>
+                                        </li>
+                                        <li>
+                                          <a href="gov-ticketsList.html">
+                                            <span class="am-icon-calendar"></span> 罚单记录</a>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li class="admin-parent">
+                                      <a class="am-cf" href="javascript:;">
+                                        <span class="am-icon-television"></span> 设备管理
+                                        <span class="am-icon-angle-right am-fr am-margin-right"></span>
+                                      </a>
+                                      <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                                        <li>
+                                          <a href="equipment-list.html" class="am-cf">
+                                            <span class="am-icon-list"></span> 设备列表
+                                            <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="add-equipment.html">
+                                            <span class="am-icon-plus"></span> 添加设备</a>
+                                        </li>
+                                        <li>
+                                          <a href="equipment-grouping.html">
+                                            <span class="am-icon-th"></span> 设备分组
+                                            <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="equipment-status.html">
+                                            <span class="am-icon-refresh"></span> 设备状态</a>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li class="admin-parent">
+                                      <a class="am-cf" href="javascript:;">
+                                        <span class="am-icon-bell"></span> 超标预警
+                                        <span class="am-icon-angle-right am-fr am-margin-right"></span>
+                                      </a>
+                                      <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                                        <li>
+                                          <a href="ent-alarmlist.html" class="am-cf">
+                                            <span class="am-icon-list"></span> 警报列表
+                                            <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="ent-addalarm.html">
+                                            <span class="am-icon-plus"></span> 添加警报</a>
+                                        </li>
+                                        <li>
+                                          <a href="ent-alarmcontacts.html">
+                                            <span class="am-icon-group"></span> 报警联系人/组
+                                            <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="ent-alarmrecord.html">
+                                            <span class="am-icon-calendar"></span> 报警记录</a>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li class="admin-parent">
+                                      <a class="am-cf" href="javascript:;">
+                                        <span class="am-icon-user"></span> 用户中心
+                                        <span class="am-icon-angle-right am-fr am-margin-right"></span>
+                                      </a>
+                                      <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                                        <li>
+                                          <a href="add-user.html" class="am-cf">
+                                            <span class="am-icon-user-plus"></span> 添加用户
+                                            <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="user-rights.html">
+                                            <span class="am-icon-wrench"></span> 用户权限</a>
+                                        </li>
+                                        <li>
+                                          <a href="user-password.html">
+                                            <span class="am-icon-key"></span> 用户密码
+                                            <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="equipment-lock.html">
+                                            <span class="am-icon-lock"></span> 设备加密</a>
+                                        </li>
+                                        <li>
+                                          <a href="communication-password.html">
+                                            <span class="am-icon-key"></span> 通讯密码</a>
+                                        </li>
+                                        <li>
+                                          <a href="user-info.html">
+                                            <span class="am-icon-user"></span> 个人信息</a>
+                                        </li>
+                                        <li>
+                                          <a href="wechat-bind.html">
+                                            <span class="am-icon-wechat"></span> 微信绑定管理</a>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li class="admin-parent">
+                                      <a class="am-cf" href="javascript:;">
+                                        <span class="am-icon-ellipsis-h"></span> 其他
+                                        <span class="am-icon-angle-right am-fr am-margin-right"></span>
+                                      </a>
+                                      <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                                        <li>
+                                          <a href="Ent-suggestion.html">
+                                            <span class="am-icon-envelope"></span> 留言反馈
+                                            <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="data-export.html">
+                                            <span class="am-icon-table"></span> 数据导出
+                                            <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="web-printing.html">
+                                            <span class="am-icon-print"></span> Web打印</a>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <a href="mobile-phone.html">
+                                        <span class="am-icon-mobile-phone am-icon-sm"></span> 手机端</a>
+                                    </li>
+                                    <li>
+                                      <a href="logout.html">
+                                        <span class="am-icon-sign-out"></span> 注销</a>
+                                    </li>
+                                  </ul>
+                          
+                                  <div class="am-panel am-panel-default admin-sidebar-panel">
+                                    <div class="am-panel-bd">
+                                      <p>
+                                        <span class="am-icon-bookmark"></span> 公告</p>
+                                      <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
+                                    </div>
+                                  </div>
+                          
+                                  <div class="am-panel am-panel-default admin-sidebar-panel">
+                                    <div class="am-panel-bd">
+                                      <p>
+                                        <span class="am-icon-tag"></span> wiki</p>
+                                      <p>Welcome to the Amaze UI wiki!</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                        <div class="admin-content">
+                                    <div class="admin-content-body">
+                                            <div class="am-cf am-padding">
+                                                    <div class="am-fl am-cf">
+                                                      <strong class="am-text-primary am-text-lg">设备列表</strong> /
+                                                      <small>设备列表</small>
+                                                    </div>
+                                              </div>
+                                          <hr/>
+                                          <!--开始-->
+                                          <div class="am-g">
+                                            <!--第一个开始-->
+                                            <div class="am-u-sm-12 am-u-md-4">
+                                                <section class="am-panel am-panel-default">
+                                                    <header class="am-panel-hd">
+                                                      <h3 class="am-panel-title">设备概况
+                                                        <select id="doc-select-1">
+                                                          <option value="">...</option>
+                                                          <option value="option1">test2</option>
+                                                          <option value="option2">test2</option>
+                                                          <option value="option3">test2</option>
+                                                          <option value="option4">test2</option>
+                                                      </select></h3>
+                                                    </header>
+                                                    <div class="am-panel-bd">
+                                                       <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                                                      <div id="container" style="height: 100%"></div>
+                                                       <!-- 开始引入 ECharts 文件 -->
+                                                              <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+                                                              <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+                                                              <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+                                                              <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+                                                              <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+                                                              <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+                                                             <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+                                                             <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+                                                            <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+                                                             <!--结束 引入 ECharts 文件 -->
+                                                            <script type="text/javascript">
+                                                              var dom = document.getElementById("container");//获取Dom的id
+                                                              var myChart = echarts.init(dom);//通过文件esl.js内封装好的require获得echarts接口后可实例化图表，echarts接口仅有一个方法init，执行init时传入一个具备大小（如果没有指定容器的大小将会按照0大小来处理即无法看到图表）的dom节点（width、height可被计算得到即可，不一定可见）后即可实例化出图表对象，
+                                                              var app = {};
+                                                              option = null;//设置图表选项，开始设置为空
+                                                              app.title = '环形图';
+                                                              //开始设置图表选项
+                                                              option = {
+                                                                //设置提示框
+                                                              tooltip: {
+                                                                   trigger: 'item',
+                                                                   formatter: "{a} <br/>{b}: {c} ({d}%)"
+                                                                     },
+                                                                     //设置图列
+                                                             legend: {
+                                                                    orient: 'vertical',
+                                                                       x: 'left',
+                                                                      data:['在线','下线']
+                                                                        },
+                                                                //
+                                                              series: [
+                                                               {
+                                                                         name:'设备概况',
+                                                                               type:'pie',
+                                                                          radius: ['50%', '70%'],
+                                                                           avoidLabelOverlap: false,
+                                                                 label: {
+                                                            normal: {
+                                                                   show: false,
+                                                                  position: 'center'
+                                                                         },
+                                                          emphasis: {
+                                                               show: true,
+                                                             textStyle: {
+                                                                 fontSize: '30',
+                                                                 fontWeight: 'bold'
+                                                                      }
+                                                                    }
+                                                                  },
+                                                         labelLine: {
+                                                             normal: {
+                                                                show: false
+                                                             }
+                                                         },
+                                                         //动态显示的数据
+                                                        data:[
+                                                                    {value:335, name:'在线'},
+                                                                    {value:310, name:'下线'},
+                                                                   
+                                                                                               ]
+                                                         }
+                                                     ]
+                                                  };//图表设置选项结束
+                                               ;
+                                                         if (option && typeof option === "object") {
+                                                             myChart.setOption(option, true);
+                                                            }
+                                                      </script> 
+                                                    </div>
+                                                  </section>
+                                            </div>
+                                             <!--第一个结束-->
+                                             <!--第二个开始-->
+                                            <div class="am-u-sm-12 am-u-md-4">
+                                                <section class="am-panel am-panel-default">
+                                                    <header class="am-panel-hd">
+                                                      <h3 class="am-panel-title">通讯协议
+                                                          <select id="doc-select-3">
+                                                              <option value="">...</option>
+                                                              <option value="option1">test2</option>
+                                                              <option value="option2">test2</option>
+                                                              <option value="option3">test2</option>
+                                                              <option value="option4">test2</option>
+                                                          </select>
+                                                      </h3>
+                                                    </header>
+                                                    <div class="am-panel-bd">
+                                                        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                                                      <div id="container1" style="height: 100%"></div>
+                                                      <!-- 开始引入 ECharts 文件 -->
+                                                             <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+                                                             <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+                                                             <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+                                                             <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+                                                             <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+                                                             <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+                                                            <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+                                                            <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+                                                           <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+                                                            <!--结束 引入 ECharts 文件 -->
+                                                           <script type="text/javascript">
+                                                             var dom = document.getElementById("container1");//获取Dom的id
+                                                             var myChart = echarts.init(dom);//通过文件esl.js内封装好的require获得echarts接口后可实例化图表，echarts接口仅有一个方法init，执行init时传入一个具备大小（如果没有指定容器的大小将会按照0大小来处理即无法看到图表）的dom节点（width、height可被计算得到即可，不一定可见）后即可实例化出图表对象，
+                                                             var app = {};
+                                                             option = null;//设置图表选项，开始设置为空
+                                                             app.title = '环形图';
+                                                             //开始设置图表选项
+                                                             option = {
+                                                               //设置提示框
+                                                             tooltip: {
+                                                                  trigger: 'item',
+                                                                  formatter: "{a} <br/>{b}: {c} ({d}%)"
+                                                                    },
+                                                                    //设置图列
+                                                            legend: {
+                                                                   orient: 'vertical',
+                                                                      x: 'left',
+                                                                     data:['DL/T645-07','数据透传','Modbus RTU','Modbus TCP']
+                                                                       },
+                                                               //
+                                                             series: [
+                                                              {
+                                                                        name:'通讯协议',
+                                                                              type:'pie',
+                                                                         radius: ['50%', '70%'],
+                                                                          avoidLabelOverlap: false,
+                                                                label: {
+                                                           normal: {
+                                                                  show: false,
+                                                                 position: 'center'
+                                                                        },
+                                                         emphasis: {
+                                                              show: true,
+                                                            textStyle: {
+                                                                fontSize: '30',
+                                                                fontWeight: 'bold'
+                                                                     }
+                                                                   }
+                                                                 },
+                                                        labelLine: {
+                                                            normal: {
+                                                               show: false
+                                                            }
+                                                        },
+                                                        //动态显示的数据
+                                                       data:[
+                                                                   {value:3, name:'DL/T645-07'},
+                                                                   {value:31, name:'数据透传'},
+                                                                   {value:31, name:'Modbus RTU'},
+                                                                   {value:23, name:'Modbus TCP'}
+                                                                  
+                                                                                              ]
+                                                        }
+                                                    ]
+                                                 };//图表设置选项结束
+                                              ;
+                                                        if (option && typeof option === "object") {
+                                                            myChart.setOption(option, true);
+                                                           }
+                                                     </script> 
+                                                    </div>
+                                                  </section>
+                                              </div>
+                                               <!--第二个结束-->
+                                               <!--第三个开始-->
+                                            <div class="am-u-sm-12 am-u-md-4">
+                                                <section class="am-panel am-panel-default">
+                                                    <header class="am-panel-hd">
+                                                      <h3 class="am-panel-title">所属用户</h3>
+                                                    </header>
+                                                    <div class="am-panel-bd">
+                                                      <table class="am-table">
+                                                        <thead>
+                                                          <tr>
+                                                            
+                                                            <th>设备数量</th>
+                                                          </tr>
+                                                        </thead>
+                                                        <tr>
+                                                          <td>10</td>
+                                                        </tr>
+                                                      </table>
+                                                    </div>
+                                                  </section>
+                                              </div>
+                                               <!--第三个结束-->
+                                          </div>
+                                          <!--结束-->
+                                          <div class="am-g">
+                                              <section class="am-panel am-panel-default">
+                                                  <header class="am-panel-hd">
+                                                    <h3 class="am-panel-title">设备地图</h3>
+                                                  </header>
+                                                  <div class="am-panel-bd">
+                                                    <!--地图-->
+                                                    <div id="allmap">
+                                                      </div>
+                                                      <div id="r-result">
+                                                            经度: <input id="longitude" type="text" style="width:100px; margin-right:10px;" />
+                                                            纬度: <input id="latitude" type="text" style="width:100px; margin-right:10px;" />
+                                                            <input type="button" value="查询" onclick="theLocation()" />
+                                                        </div>
+                                                        <!--结束-->
+                                                  </div>
+                                                </section>
+                                                <div class="am-g">
+                                                    <div class="am-u-sm-12 am-u-md-6">
+                                                        <div class="am-btn-toolbar">
+                                                            <div class="am-btn-group am-btn-group-xs">
+                                                                <a href="add-equipment.html" type="button" class="am-btn am-btn-success am-round">
+                                                                    <span class="am-icon-plus"></span> 新增</a>
+                                                            </div>
+                                                            <div class="am-btn-group am-btn-group-xs">
+                                                                <button  type="button" class="am-btn am-btn-danger am-round">
+                                                                    <span class="am-icon-trash-o"></span> 批量删除</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="am-u-sm-12 am-u-md-3">
+                                                        <select data-am-selected="{btnWidth: '40%', btnSize: 'sm', btnStyle: 'secondary'}">
+                                                            <option value="a">默认分组</option>
+                                                            <option value="b">默认分组</option>
+                                                            <option value="o">默认分组</option>
+                                                            <option value="m">默认分组</option>
+                                                          </select>
+                                                    </div>
+                                                    <div class="am-u-sm-12 am-u-md-3">
+                                                        <div class="am-input-group am-input-group-sm">
+                                                            <input type="text" placeholder="设备名称" class="am-form-field">
+                                                            <span class="am-input-group-btn">
+                                                                <button class="am-btn am-btn-success" type="button">搜索</button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="am-g">
+                                                    <div class="am-u-sm-12">
+                                                        <form class="am-form">
+                                                            <table class="am-table am-table-striped am-table-hover table-main">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="table-check">
+                                                                            <input type="checkbox" />
+                                                                        </th>
+                                                                        <th class="table-type">状态</th>
+                                                                        <th class="table-title">名称/位置</th>
+                                                                        <th class="table-type">设备编号</th>
+                                                                        <th class="table-author">所属分组</th>
+                                                                        <th class="table-type">设备类型</th>
+                                                                        <th class="table-type">通讯协议</th>
+                                                                        <th class="table-type">采集频率</th>
+                                                                        <th class="table-author">所属分组</th>
+                                                                        <th class="table-date">修改时间</th>
+                                                                        <th class="table-set">操作</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <input type="checkbox" />
+                                                                        </td>
+                                                                        <td>上线</td>
+                                                                        <td>
+                                                                          <a>测试设备1</a>
+                                                                          <span class="am-icon-map-marker">大理</span>   
+                                                                        </td>
+                                                                        <td>1233131417</td>
+                                                                        <td >默认分组</td>
+                                                                        <td>默认设备</td>
+                                                                        <td>Modbus RTU</td>
+                                                                        <td>一分钟</td>
+                                                                        <td>大理大学</td>
+                                                                        <td class="am-hide-sm-only">2018-07-11 14:32:15</td>
+                                                                        <td>
+                                                                            <div class="am-btn-toolbar">
+                                                                                <div class="am-btn-group am-btn-group-xs">
+                                                                                    <a class="am-btn am-btn-primary am-btn-xs">
+                                                                                        <span class="am-icon-pencil-square-o"></span> 编辑</a>
+                                                                                    <a class="am-btn am-btn-success am-btn-xs am-hide-sm-only">
+                                                                                        <span class="am-icon-copy"></span> 复制</a>
+                                                                                    <a class="am-btn am-btn-danger am-btn-xs am-hide-sm-only">
+                                                                                        <span class="am-icon-trash-o"></span> 删除</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <input type="checkbox" />
+                                                                        </td>
+                                                                        <td>上线</td>
+                                                                        <td>
+                                                                            <a>测试设备1</a>
+                                                                          <span class="am-icon-map-marker">大理</span> 
+                                                                        </td>
+                                                                        <td>1233131417</td>
+                                                                        <td >默认分组</td>
+                                                                        <td>默认设备</td>
+                                                                        <td>Modbus RTU</td>
+                                                                        <td>一分钟</td>
+                                                                        <td>大理大学</td>
+                                                                        <td class="am-hide-sm-only">2018-07-11 14:32:15</td>
+                                                                        <td>
+                                                                            <div class="am-btn-toolbar">
+                                                                                <div class="am-btn-group am-btn-group-xs">
+                                                                                    <a class="am-btn am-btn-primary am-btn-xs">
+                                                                                        <span class="am-icon-pencil-square-o"></span> 编辑</a>
+                                                                                    <a class="am-btn am-btn-success am-btn-xs am-hide-sm-only">
+                                                                                        <span class="am-icon-copy"></span> 复制</a>
+                                                                                    <a class="am-btn am-btn-danger am-btn-xs am-hide-sm-only">
+                                                                                        <span class="am-icon-trash-o"></span> 删除</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <input type="checkbox" />
+                                                                        </td>
+                                                                        <td>上线</td>
+                                                                        <td>
+                                                                            <a>测试设备1</a>
+                                                                            <span class="am-icon-map-marker">大理</span> 
+                                                                        </td>
+                                                                        <td>1233131417</td>
+                                                                        <td >默认分组</td>
+                                                                        <td>默认设备</td>
+                                                                        <td>Modbus RTU</td>
+                                                                        <td>一分钟</td>
+                                                                        <td>大理大学</td>
+                                                                        <td class="am-hide-sm-only">2018-07-11 14:32:15</td>
+                                                                        <td>
+                                                                            <div class="am-btn-toolbar">
+                                                                                <div class="am-btn-group am-btn-group-xs">
+                                                                                    <a class="am-btn am-btn-primary am-btn-xs">
+                                                                                        <span class="am-icon-pencil-square-o"></span> 编辑</a>
+                                                                                    <a class="am-btn am-btn-success am-btn-xs am-hide-sm-only">
+                                                                                        <span class="am-icon-copy"></span> 复制</a>
+                                                                                    <a class="am-btn am-btn-danger am-btn-xs am-hide-sm-only">
+                                                                                        <span class="am-icon-trash-o"></span> 删除</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <input type="checkbox" />
+                                                                        </td>
+                                                                        <td>上线</td>
+                                                                        <td>
+                                                                            <a>测试设备1</a>
+                                                                            <span class="am-icon-map-marker">大理</span> 
+                                                                        </td>
+                                                                        <td>1233131417</td>
+                                                                        <td >默认分组</td>
+                                                                        <td>默认设备</td>
+                                                                        <td>Modbus RTU</td>
+                                                                        <td>一分钟</td>
+                                                                        <td>大理大学</td>
+                                                                        <td class="am-hide-sm-only">2018-07-11 14:32:15</td>
+                                                                        <td>
+                                                                            <div class="am-btn-toolbar">
+                                                                                <div class="am-btn-group am-btn-group-xs">
+                                                                                    <a class="am-btn am-btn-primary am-btn-xs">
+                                                                                        <span class="am-icon-pencil-square-o"></span> 编辑</a>
+                                                                                    <a class="am-btn am-btn-success am-btn-xs am-hide-sm-only">
+                                                                                        <span class="am-icon-copy"></span> 复制</a>
+                                                                                    <a class="am-btn am-btn-danger am-btn-xs am-hide-sm-only">
+                                                                                        <span class="am-icon-trash-o"></span> 删除</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <input type="checkbox" />
+                                                                        </td>
+                                                                        <td>上线</td>
+                                                                        <td>
+                                                                            <a>测试设备1</a>
+                                                                            <span class="am-icon-map-marker">大理</span> 
+                                                                        </td>
+                                                                        <td>1233131417</td>
+                                                                        <td >默认分组</td>
+                                                                        <td>默认设备</td>
+                                                                        <td>Modbus RTU</td>
+                                                                        <td>一分钟</td>
+                                                                        <td>大理大学</td>
+                                                                        <td class="am-hide-sm-only">2018-07-11 14:32:15</td>
+                                                                        <td>
+                                                                            <div class="am-btn-toolbar">
+                                                                                <div class="am-btn-group am-btn-group-xs">
+                                                                                    <a class="am-btn am-btn-primary am-btn-xs">
+                                                                                        <span class="am-icon-pencil-square-o"></span> 编辑</a>
+                                                                                    <a class="am-btn am-btn-success am-btn-xs am-hide-sm-only">
+                                                                                        <span class="am-icon-copy"></span> 复制</a>
+                                                                                    <a class="am-btn am-btn-danger am-btn-xs am-hide-sm-only">
+                                                                                        <span class="am-icon-trash-o"></span> 删除</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <div class="am-cf">
+                                                                共 15 条记录
+                                                                <div class="am-fr">
+                                                                    <ul class="am-pagination">
+                                                                        <li class="am-disabled">
+                                                                            <a href="#">«</a>
+                                                                        </li>
+                                                                        <li class="am-active">
+                                                                            <a href="#">1</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">2</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">3</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">4</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">5</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">»</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <hr />
+                                                            <p>注：.....</p>
+                                                        </form>
+                                                    </div>
+                                        
+                                                </div>
+                                    </div>
+                                </div>
+                    </div>
+        </body>
+</html>
+<script type="text/javascript">
+	// 百度地图API功能
+	var map = new BMap.Map("allmap");    // 创建Map实例
+	map.centerAndZoom(new BMap.Point(100.19, 25.69), 11);  // 初始化地图,设置中心点坐标和地图级别
+	//添加地图类型控件
+	map.addControl(new BMap.MapTypeControl({
+		mapTypes:[
+            BMAP_NORMAL_MAP,
+            BMAP_HYBRID_MAP
+        ]}));	  
+	map.setCurrentCity("大理");          // 设置地图显示的城市 此项是必须设置的
+	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+    var traffic = new BMap.TrafficLayer();        // 创建交通流量图层实例      
+    map.addTileLayer(traffic);                    // 将图层添加到地图上
+
+    map.removeTileLayer(traffic);                // 将图层移除
+</script>

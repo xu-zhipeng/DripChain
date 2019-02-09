@@ -10,16 +10,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <link rel="icon" type="image/png" href="assets/i/favicon.png">
-  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+  <link rel="icon" type="image/png" href="static/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="static/i/app-icon72x72@2x.png">
   <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-  <link rel="stylesheet" href="assets/css/amazeui.min.css" />
-  <link rel="stylesheet" href="assets/css/admin.css">
+  <link rel="stylesheet" href="static/css/amazeui.min.css" />
+  <link rel="stylesheet" href="static/css/admin.css">
   <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="assets/js/echarts.min.js"></script>
+  <script src="static/js/echarts.min.js"></script>
 
   <script type="text/javascript">
-    $(function () {
+    $(function () {     //下拉框js
+      $("#xiala ul").hide();   ////初始化隐藏状态
+      $("#xiala li a").click(function () {
+        if ($(this).next("ul").is(":visible")) {
+          $(this).next("ul").slideUp(100);
+        } else {
+          // $("#xiala ul").slideUp(100);//打开之前把其他的关掉
+          $(this).next("ul").slideDown(100);
+        }
+      });
+    });
+    $(function () {     //侧边栏隐藏js
       $("#admin-offcanvas").show();
       $(".am-icon-list.am-margin-left").click(function () {
         if ($("#admin-offcanvas").is(":visible")) {
@@ -94,16 +105,16 @@
   
   <div class="am-cf admin-main">
     <!-- sidebar start -->
-    <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+    <div class="admin-sidebar am-offcanvas" id="admin-offcanvas" style="overflow-x: hidden; overflow-y: auto;margin-right: -15px;">
       <div class="am-offcanvas-bar admin-offcanvas-bar">
         <ul id="xiala" class="am-list admin-sidebar-list">
           <li>
             <a href="index.html">
               <span class="am-icon-home"></span> 首页</a>
           </li>
-  
+    
           <li class="admin-parent">
-            <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
+            <a href="javascript:;" class="am-cf">
               <span class="am-icon-dashboard"></span> 监控中心
               <span class="am-icon-angle-right am-fr am-margin-right"></span>
             </a>
@@ -121,7 +132,7 @@
             </ul>
           </li>
           <li class="admin-parent">
-            <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
+            <a class="am-cf" href="javascript:;">
               <span class="am-icon-dot-circle-o"></span> 数据分析
               <span class="am-icon-angle-right am-fr am-margin-right"></span>
             </a>
@@ -149,79 +160,7 @@
             </ul>
           </li>
           <li class="admin-parent">
-            <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
-              <span class="am-icon-building"></span> 企业管理
-              <span class="am-icon-angle-right am-fr am-margin-right"></span>
-            </a>
-            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
-              <li>
-                <a href="enterprise-update.html" class="am-cf">
-                  <span class="am-icon-wrench"></span> 企业更新
-                  <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
-                </a>
-              </li>
-              <li>
-                <a href="enterprise-check.html">
-                  <span class="am-icon-check"></span> 企业审核</a>
-              </li>
-              <li>
-                <a href="enterprise-list.html">
-                  <span class="am-icon-list"></span> 企业列表</a>
-              </li>
-            </ul>
-          </li>
-          <li class="admin-parent">
-            <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
-              <span class="am-icon-bullhorn"></span> 政策公告
-              <span class="am-icon-angle-right am-fr am-margin-right"></span>
-            </a>
-            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
-              <li>
-                <a href="notice-list.html" class="am-cf">
-                  <span class="am-icon-list"></span> 公告列表
-                  <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
-                </a>
-              </li>
-              <li>
-                <a href="add-notice.html">
-                  <span class="am-icon-plus"></span> 添加公告</a>
-              </li>
-              <li>
-                <a href="del-notice.html">
-                  <span class="am-icon-th"></span> 删除公告
-                  <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
-                </a>
-              </li>
-              <li>
-                <a href="update-notice.html">
-                  <span class="am-icon-refresh"></span> 更新公告</a>
-              </li>
-            </ul>
-          </li>
-          <li class="admin-parent">
-            <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
-              <span class="am-icon-bell"></span> 超标提醒
-              <span class="am-icon-angle-right am-fr am-margin-right"></span>
-            </a>
-            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
-              <li>
-                <a href="gov-overList.html" class="am-cf">
-                  <span class="am-icon-list"></span> 超标列表
-                  <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
-                </a>
-              </li>
-              <li>
-                <a href="gov-newTickets.html">
-                  <span class="am-icon-plus"></span> 新增罚单</a>
-              </li>
-              <li>
-                <a href="gov-ticketsList.html">
-                  <span class="am-icon-calendar"></span> 罚单记录</a>
-              </li>
-            </ul>
-          </li>
-          <li class="admin-parent">
-            <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
+            <a class="am-cf" href="javascript:;">
               <span class="am-icon-television"></span> 设备管理
               <span class="am-icon-angle-right am-fr am-margin-right"></span>
             </a>
@@ -249,7 +188,7 @@
             </ul>
           </li>
           <li class="admin-parent">
-            <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
+            <a class="am-cf" href="javascript:;">
               <span class="am-icon-bell"></span> 超标预警
               <span class="am-icon-angle-right am-fr am-margin-right"></span>
             </a>
@@ -277,30 +216,26 @@
             </ul>
           </li>
           <li class="admin-parent">
-            <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
+            <a class="am-cf" href="javascript:;">
               <span class="am-icon-user"></span> 用户中心
               <span class="am-icon-angle-right am-fr am-margin-right"></span>
             </a>
             <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
               <li>
-                <a href="add-user.html" class="am-cf">
-                  <span class="am-icon-user-plus"></span> 添加用户
+                <a href="add-subuser.html" class="am-cf">
+                  <span class="am-icon-user-plus"></span> 添加子用户
                   <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
                 </a>
               </li>
               <li>
-                <a href="user-rights.html">
-                  <span class="am-icon-wrench"></span> 用户权限</a>
+                <a href="subuser-list.html">
+                  <span class="am-icon-wrench"></span> 子用户列表</a>
               </li>
               <li>
                 <a href="user-password.html">
                   <span class="am-icon-key"></span> 用户密码
                   <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
                 </a>
-              </li>
-              <li>
-                <a href="equipment-lock.html">
-                  <span class="am-icon-lock"></span> 设备加密</a>
               </li>
               <li>
                 <a href="communication-password.html">
@@ -317,7 +252,7 @@
             </ul>
           </li>
           <li class="admin-parent">
-            <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
+            <a class="am-cf" href="javascript:;">
               <span class="am-icon-ellipsis-h"></span> 其他
               <span class="am-icon-angle-right am-fr am-margin-right"></span>
             </a>
@@ -341,15 +276,20 @@
             </ul>
           </li>
           <li>
-            <a href="mobile-phone.html">
-              <span class="am-icon-mobile-phone am-icon-sm"></span> 手机端</a>
+            <a id="erweima" href="javascript:;" class="list-group-item" title="<h4 align='center'>扫二维码下载APP</h4>" data-container="body"
+              data-toggle="popover" data-placement="right" data-content="<img src='static/images/erweima.jpg' width='200' height='200' />">
+              <span class="am-icon-mobile-phone am-icon-sm"></span>手机端
+            </a>
           </li>
           <li>
             <a href="logout.html">
               <span class="am-icon-sign-out"></span> 注销</a>
           </li>
         </ul>
-  
+        <script>
+          $(function () { $("[data-toggle='popover']").popover({ html: true }); });
+        </script>
+    
         <div class="am-panel am-panel-default admin-sidebar-panel">
           <div class="am-panel-bd">
             <p>
@@ -357,7 +297,7 @@
             <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
           </div>
         </div>
-  
+    
         <div class="am-panel am-panel-default admin-sidebar-panel">
           <div class="am-panel-bd">
             <p>
@@ -601,16 +541,16 @@
   <a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
 
   <!--[if lt IE 9]>
-<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
-<![endif]-->
+  <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+  <script src="static/js/amazeui.ie8polyfill.min.js"></script>
+  <![endif]-->
 
   <!--[if (gte IE 9)|!(IE)]><!-->
-  <script src="assets/js/jquery.min.js"></script>
+  <script src="static/js/jquery.min.js"></script>
   <!--<![endif]-->
-  <script src="assets/js/amazeui.min.js"></script>
-  <script src="assets/js/app.js"></script>
+  <script src="static/js/amazeui.min.js"></script>
+  <script src="static/js/app.js"></script>
 </body>
 
 </html>

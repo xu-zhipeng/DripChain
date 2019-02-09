@@ -4,19 +4,25 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>水滴链</title>
+    <title>水滴链 | 添加设备</title>
     <meta name="description" content="这是一个 index 页面">
     <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="icon" type="image/png" href="static/i/favicon.png">
+    <!--百度地图-->
+     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />  <!--适应移动设备页面展示-->
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <!--结束-->
+     <link rel="icon" type="image/png" href="static/images/dripicon.png">
     <link rel="apple-touch-icon-precomposed" href="static/i/app-icon72x72@2x.png">
     <meta name="apple-mobile-web-app-title" content="Amaze UI" />
     <link rel="stylesheet" href="static/css/amazeui.min.css" />
     <link rel="stylesheet" href="static/css/admin.css">
-    <script src="static/js/jquery2.1.4.min.js">
-    </script>
+    <script src="static/js/jquery2.1.4.min.js"></script>
+    <!--百度地图的接口-->
+    <!-- <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=PzCuZhEZIVgALkhC9fMmo9cLMyO2lZZX"></script> -->
+    <!--百度地图的接口的结束-->
     <script type="text/javascript">
         $(function () {     //下拉框js
             $("#xiala ul").hide();   ////初始化隐藏状态
@@ -41,6 +47,20 @@
             });
         });
     </script>
+    <!--设置地图样式-->
+    <style type="text/css">
+        #allmap {
+            width: 500px;
+            height: 500px;
+            overflow: hidden;
+            margin: 0;
+            font-family: "微软雅黑";
+        }
+        #r-result{width:100%;
+               font-size:14px;
+             }
+    </style>
+      <!--设置地图样式结束-->
 </head>
 
 <body>
@@ -314,135 +334,156 @@
             <div class="admin-content-body">
                 <div class="am-cf am-padding am-padding-bottom-0">
                     <div class="am-fl am-cf">
-                        <strong class="am-text-primary am-text-lg">添加警报</strong> /
-                        <small>Add Alarm</small>
+                        <strong class="am-text-primary am-text-lg">添加设备</strong> /
+                        <small>添加设备</small>
                     </div>
                 </div>
-        
                 <hr/>
-        
                 <div class="am-g">
                     <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
                         <div class="am-panel am-panel-default">
                             <div class="am-panel-bd">
-                                <div am-u-md-12 style="text-align: center;"><strong>超标预警设置</strong><hr/></div>
-                                <p> &nbsp;&nbsp;&nbsp;&nbsp;超标预警可以设置不同的设备和数据点绑定不同的报警方式。<br>  &nbsp;&nbsp;&nbsp;&nbsp;当设备触发报警条件时会进入报警状态，服务器推送报警消息，后面的报警信息将不再推送，直到恢复正常数据时推送设备恢复消息。<br>  &nbsp;&nbsp;&nbsp;&nbsp;触发器仅支持非数据透传的通讯协议设备。</p>
+                                <div am-u-md-12 style="text-align: center;"><strong>设备类型</strong><hr/></div>
+                                <P>默认设备：包含有人品牌的DTU、串口服务器等，添加完成后，系统自动分配ID，并通过软件写入设备内完成接入</p>
                             </div>
                         </div>
 
                         <div class="am-panel am-panel-default">
                             <div class="am-panel-bd">
                                 <div am-u-md-12 style="text-align: center;">
-                                    <strong>触发规则</strong>
+                                    <strong>通讯协议</strong>
                                     <hr/>
                                 </div>
-                                <p> 默认触发规则为状态切换报警：</p>
-                                <p>例：温度大于40报警；温度到50会触发报警推送并存储报警信息，再次上传“60”不会触发报警且不保存数据。温度到30，会触发恢复报警推送并存储报警消息。</p>
+                                <p>透传云将根据设定的协议格式解析，并根据数据点的设定存入数据库、处理报警、推送给前端。</p>
+                                <p>Modbus RTU：服务器将做Modbus RTU主机，主动向设备发送读取数据指令。</p>
+                                <p>DL/T645：电表协议，可用于电力抄表，支持97和07两种格式。</p>
+                                <p>数据透传：仅希望通过透传云获取数据流，可利用SDK获取设备数据流，也可利用透传组设定好透传关系。</p>
                             </div>
                         </div>
-                        
+                        <div class="am-panel am-panel-default">
+                            <div class="am-panel-bd">
+                                <div am-u-md-12 style="text-align: center;">
+                                    <strong>通讯密码</strong>
+                                    <hr/>
+                                </div>
+                                <p>设置默认设备接入的密码，支持密码自定义，实现不同设备接入密码不同。</p>
+                                <p>设备一旦接入成功后轻易不要修改，否则会造成设备由于密码错误无法再次接入。</p>
+                            </div>
+                        </div>
         
                     </div>
         
                     <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
                         <form class="am-form am-form-horizontal">
                             <div class="am-form-group">
-                                <label for="user-name" class="am-u-sm-3 am-form-label">名称<span style="color: red;">*</span></label>
+                                <label for="user-name" class="am-u-sm-3 am-form-label">所属用户<span style="color: red;">*</span></label>
+                                <div class="am-u-sm-6">
+                                    <select id="doc-select-1">
+                                        <option value="">请选择...</option>
+                                        <option value="option1">小明</option>
+                                        <option value="option2">小洪</option>
+                                        <option value="option3">小白</option>
+                                        <option value="option4">小龙</option>
+                                    </select>
+                                </div>
+                                <div class="am-u-sm-3"></div>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="user-name" class="am-u-sm-3 am-form-label">设备分组<span style="color: red;">*</span></label>
+                                <div class="am-u-sm-6">
+                                    <select id="doc-select-2">
+                                        <option value="">请选择...</option>
+                                        <option value="option1">默认分组</option>
+                                        <option value="option2">默认分组</option>
+                                        <option value="option3">默认分组</option>
+                                        <option value="option4">默认分组</option>
+                                    </select>
+                                </div>
+                                <div class="am-u-sm-3"></div>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="user-name" class="am-u-sm-3 am-form-label">设备名称<span style="color: red;">*</span></label>
                                 <div class="am-u-sm-9">
-                                    <input type="text" id="user-name" placeholder="名称">
-                                    <small>输入你的报警名称。</small>
+                                    <input type="text" id="user-name" placeholder="设备名称">
+                                    <small>输入你的设备名称。</small>
                                 </div>
                             </div>
-
                             <div class="am-form-group">
-                                <label for="user-name" class="am-u-sm-3 am-form-label">选择数据模板<span style="color: red;">*</span></label>
-                                <div class="am-u-sm-6">
-                                    <select id="doc-select-1">
-                                        <option value="">请选择...</option>
-                                        <option value="option1">温度计</option>
-                                        <option value="option2">PH值计</option>
-                                        <option value="option3">监控设备</option>
-                                        <option value="option4">智能电表</option>
-                                    </select>
-                                </div>
-                                <div class="am-u-sm-3"></div>
-                            </div>
-                            
-                            <div class="am-form-group">
-                                <label for="user-name" class="am-u-sm-3 am-form-label">选择数据点<span style="color: red;">*</span>
-                                </label>
-                                <div class="am-u-sm-6">
-                                    <select id="doc-select-1">
-                                        <option value="">请选择...</option>
-                                        <option value="option1">温度</option>
-                                        <option value="option2">PH值</option>
-                                        <option value="option3">电压</option>
-                                    </select>
-                                </div>
-                                <div class="am-u-sm-3"></div>
-                            </div>
-
-                            <div class="am-form-group">
-                                <label for="user-name" class="am-u-sm-3 am-form-label">报警条件<span style="color: red;">*</span>
-                                </label>
-                                <div class="am-u-sm-6">
-                                    <select id="doc-select-1">
-                                        <option value="">请选择...</option>
-                                        <option value="option1">开关ON</option>
-                                        <option value="option2">开关OFF</option>
-                                        <option value="option3">数值低于A</option>
-                                        <option value="option3">数值高于B</option>
-                                        <option value="option3">数值在AB之间</option>
-                                    </select>
-                                </div>
-                                <div class="am-u-sm-3"></div>
-                            </div>
-
-                            <div class="am-form-group">
-                                <label for="user-email" class="am-u-sm-3 am-form-label">保存规则
-                                    <button style="border: none;" type="button" class="am-btn am-btn-default am-round" data-am-popover="{theme: 'secondary xs',content: '<p>保存规则指的是报警数据的保存规则： </p><p><strong>保存</strong></p> <p>保存触发器触发报警时的数据，以及从报警状态恢复到正常状态时的数据。</p> <p><strong>不保存</strong></p> <p>不保存报警数据。</p>', trigger: 'hover focus'}">
-                                        ？
-                                    </button><span style="color: red;">*</span>
+                                <label for="user-email" class="am-u-sm-3 am-form-label">设备类型
                                 </label>
                                 <div class="am-u-sm-9">
                                     <label class="am-radio-inline">
-                                        <input type="radio" value="" name="docInlineRadio"/> 保存
+                                        <input type="radio" value="" name="docInlineRadio"/> 默认设备
                                     </label>&nbsp;&nbsp;&nbsp;&nbsp;
                                     <label class="am-radio-inline">
-                                        <input type="radio" value="" name="docInlineRadio"/> 不保存
+                                        <input type="radio" value="" name="docInlineRadio"/> 网络io
+                                    </label>
+                                    <label class="am-radio-inline">
+                                        <input type="radio" value="" name="docInlineRadio"/> 二维码添加
+                                    </label>
+                                    <label class="am-radio-inline">
+                                        <input type="radio" value="" name="docInlineRadio"/> PLC云网关
                                     </label>
                                 </div>
-                            </div>
-
-                            <div class="am-form-group">
-                                <label for="user-name" class="am-u-sm-3 am-form-label">报警联系人<span style="color: red;">*</span>
-                                </label>
-                                <div class="am-u-sm-6">
-                                    <select id="doc-select-1">
-                                        <option value="">请选择...</option>
-                                        <option value="option1">张三</option>
-                                        <option value="option2">李四</option>
-                                        <option value="option3">王五</option>
-                                        <option value="option3">赵六</option>
-                                    </select>
+                              </div>
+                              <div class="am-form-group">
+                                  <label for="user-name" class="am-u-sm-3 am-form-label">设备ID<span style="color: red;">*</span></label>
+                                  <div class="am-u-sm-9">
+                                      <input type="text" id="user-name" placeholder="请输入设备ID">
+                                  </div>
+                              </div>
+                              <div class="am-form-group">
+                                  <label for="user-name" class="am-u-sm-3 am-form-label">通讯密码<span style="color: red;">*</span></label>
+                                  <div class="am-u-sm-9">
+                                      <input type="passord" id="user-password" placeholder="请输入你的通讯密码">
+                                  </div>
+                              </div>
+                              <div class="am-form-group">
+                                  <label for="user-email" class="am-u-sm-3 am-form-label">通讯协议
+                                  </label>
+                                  <div class="am-u-sm-9">
+                                      <label class="am-radio-inline">
+                                          <input type="radio" value="" name="docInlineRadio"/> Modbus RTU
+                                      </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                      <label class="am-radio-inline">
+                                          <input type="radio" value="" name="docInlineRadio"/> odbus TCP
+                                      </label>
+                                      <label class="am-radio-inline">
+                                          <input type="radio" value="" name="docInlineRadio"/> 数据透传
+                                      </label>
+                                      <label class="am-radio-inline">
+                                          <input type="radio" value="" name="docInlineRadio"/> DL/T645-97
+                                      </label>
+                                  </div>
                                 </div>
-                                <div class="am-u-sm-3"></div>
-                            </div>
-
+                                <div class="am-form-group">
+                                    <label for="user-email" class="am-u-sm-3 am-form-label">设备图片
+                                    </label>
+                                    <div class="am-u-sm-9">
+                                        
+                                        <input type="file" id="doc-ipt-file-1">
+                                        <p class="am-form-help">请选择要上传的文件..</p>
+                                  </div>
+                                <!--
+                                <div class="am-form-group">
+                                    <label for="doc-ipt-file-1">原生文件上传域</label>
+                                    <input type="file" id="doc-ipt-file-1">
+                                    <p class="am-form-help">请选择要上传的文件...</p>
+                                  </div>-->
                             <div class="am-form-group">
-                                <label for="user-intro" class="am-u-sm-3 am-form-label">报警推送内容<span style="color: red;">*</span></label>
+                                <label for="user-intro" class="am-u-sm-3 am-form-label">设备位置<span style="color: red;">*</span></label>
                                 <div class="am-u-sm-9">
-                                    <textarea class="" rows="5" id="user-intro" placeholder="触发警报时推送的消息"></textarea>
+                                    <!--百度地图-->
+                                    <div id="allmap">
+                                      </div>
+                                      <div id="r-result">
+                                            经度: <input id="longitude" type="text"/>
+                                            纬度: <input id="latitude" type="text"  />
+                                            <input type="button" value="查询" onclick="theLocation()" id="user-intro" style="width: 100px; top:10px"/>
+                                        </div>
+                                        <!--结束-->
                                 </div>
                             </div>
-        
-                            <div class="am-form-group">
-                                <label for="user-intro" class="am-u-sm-3 am-form-label">恢复正常推送内容<span style="color: red;">*</span></label>
-                                <div class="am-u-sm-9">
-                                    <textarea class="" rows="5" id="user-intro" placeholder="警报解除时推送的消息"></textarea>
-                                </div>
-                            </div>
-        
                             <div class="am-form-group">
                                 <div class="am-u-sm-9 am-u-sm-push-3">
                                     <button type="button" class="am-btn am-btn-primary">保存修改</button>
@@ -483,5 +524,20 @@
 
 <script src="static/js/app.js"></script>
 </body>
-
 </html>
+<script type="text/javascript">
+    //百度地图API功能
+    function loadJScript() {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "http://api.map.baidu.com/api?v=2.0&ak=PzCuZhEZIVgALkhC9fMmo9cLMyO2lZZX&callback=init";
+        document.body.appendChild(script);
+    }
+    function init() {
+        var map = new BMap.Map("allmap");            // 创建Map实例
+        var point = new BMap.Point(116.404, 39.915); // 创建点坐标
+        map.centerAndZoom(point, 15);
+        map.enableScrollWheelZoom();                 //启用滚轮放大缩小
+    }
+    window.onload = loadJScript;  //异步加载地图
+</script>
