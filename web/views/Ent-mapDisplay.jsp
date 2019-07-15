@@ -22,7 +22,7 @@
     <script src="/DripChain/views/static/js/jquery2.1.4.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/DripChain/views/static/css/map-display.css">
 
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=X62bMVYNWyuoXiE2n91bsylO9ssyZPwM"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=LBIgTRrLI5rhggci3fNeblOnDnO4PIjI"></script>
     <script type="text/javascript">
         $(function () {
             $("#xiala ul").hide();   ////初始化隐藏状态

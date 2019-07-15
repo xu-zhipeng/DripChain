@@ -101,7 +101,7 @@
 
 		<!-- 表达式：所有公有方法忽略返回值   作用在com.dali包下面的跨几个目录的任意包的任意类的任意方法（可以有任意的参数） -->
 		<!--<aop:advisor pointcut="execution(public * com.dali.DripChain..*.*(..))" advice-ref="txAdvice"/>-->
-		<aop:advisor pointcut="execution(public * DaoTest.*.*(..))" advice-ref="txAdvice"/>
+		<!--<aop:advisor pointcut="execution(public * DaoTest.*.*(..))" advice-ref="txAdvice"/>-->
 	</aop:config>
 
 	<!-- 配置置Quartz 定时器-->
@@ -148,8 +148,8 @@
 		<!--注册定时器实体 集合-->
 		<property name="triggers">
 			<list>
-				<ref bean="dataLoadTrigger"/>
-				<ref bean="alarmTrigger"/>
+				<!--<ref bean="dataLoadTrigger"/>-->
+				<!--<ref bean="alarmTrigger"/>-->
 			</list>
 		</property>
 	</bean>

@@ -24,7 +24,7 @@
     <script src="/DripChain/views/static/js/jquery2.1.4.min.js"></script>
     <!--百度地图的接口-->
     <script type="text/javascript"
-            src="http://api.map.baidu.com/api?v=3.0&ak=X62bMVYNWyuoXiE2n91bsylO9ssyZPwM"></script>
+            src="http://api.map.baidu.com/api?v=3.0&ak=LBIgTRrLI5rhggci3fNeblOnDnO4PIjI"></script>
     <!--百度地图的接口的结束-->
     <script type="text/javascript">
         $(function () {     //下拉框js

@@ -77,13 +77,14 @@ public class Main {
         }
         System.out.println("结束");
     }
+
     public static void getTransactionService(){
         /*  测试getService()方法  */
         System.out.println("开始");
         ApplicationContext ac = new ClassPathXmlApplicationContext("Spring-Hibernate.xml");
         tbUserService tbuserService =(tbUserService) ac.getBean("tbuserService");
         try {
-            tbuserService.test();
+            tbuserService.testOut();
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -176,12 +177,12 @@ public class Main {
 //        session.getTransaction().commit();
     }
     public static void main(String[] args) {
-        openSession();
+//        openSession();
 //        getCurrentSession();
         /*因为用hibernateDaosupport写的所以Dao成没有包含进事务的话，会报只读异常，如果Dao层用session写无影响*/
 //        getDao();
 //        getService();
-//        getTransactionService();
+        getTransactionService();
 //        getLoginService();
 //        listTest();
 //        testGuanLian();

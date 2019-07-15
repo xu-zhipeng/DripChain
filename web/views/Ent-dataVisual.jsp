@@ -83,7 +83,7 @@
                 <script type="text/javascript"
                         src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
                 <script type="text/javascript"
-                        src="http://api.map.baidu.com/api?v=3.0&ak=X62bMVYNWyuoXiE2n91bsylO9ssyZPwM"></script>
+                        src="http://api.map.baidu.com/api?v=3.0&ak=LBIgTRrLI5rhggci3fNeblOnDnO4PIjI"></script>
                 <script type="text/javascript"
                         src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
                 <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>

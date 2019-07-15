@@ -23,9 +23,6 @@
     <link rel="stylesheet" href="/DripChain/views/static/css/admin.css">
     <script src="/DripChain/views/static/js/jquery2.1.4.min.js"></script>
     <script src="/DripChain/views/static/js/amazeui.min.js"></script>
-    <!--地图密钥-->
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=X62bMVYNWyuoXiE2n91bsylO9ssyZPwM"></script>
-    <!--结束-->
     <!--图表引入-->
     <script type="text/javascript" src="http://echart s.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
     <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
@@ -34,11 +31,14 @@
             src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
     <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
     <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=X62bMVYNWyuoXiE2n91bsylO9ssyZPwM"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=LBIgTRrLI5rhggci3fNeblOnDnO4PIjI"></script>
     <script type="text/javascript"
             src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
     <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
-    <script type="text/javascript"></script>
+    <!--百度地图的接口-->
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=LBIgTRrLI5rhggci3fNeblOnDnO4PIjI"></script>
+    <!--百度地图的接口的结束-->
     <script type="text/javascript">
         $(function () {     //下拉框js
             $("#xiala ul").hide();   ////初始化隐藏状态
